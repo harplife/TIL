@@ -19,8 +19,8 @@
 
 ### Data Science
 
-- Kaggle: Titanic 자료를 상관계수로 분석
-- Kaggle: Titanic 생존률을 성별로만 예측
+- [Kaggle: Titanic 자료를 상관계수로 분석](<https://github.com/harplife/TIL/blob/master/Data%20Science/Titanic_Correlations.ipynb>)
+- [Kaggle: Titanic 생존률을 성별로만 예측](<https://github.com/harplife/TIL/blob/master/Data%20Science/Titanic_Gender_Only.ipynb>)
 
 ---
 
