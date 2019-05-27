@@ -6,8 +6,8 @@
 
 - [Git](<https://github.com/harplife/TIL/tree/master/Git>)
 - [Data Science](<https://github.com/harplife/TIL/tree/master/Data Science>)
-- Java
-- Python
+- [Java](<https://github.com/harplife/TIL/tree/master/Java>)
+- [Python](<https://github.com/harplife/TIL/tree/master/Python>)
 
 ---
 
@@ -16,4 +16,20 @@
 - [git-basic](<https://github.com/harplife/TIL/blob/master/Git/Git_Manual.md>)
 
 ---
+
+### Data Science
+
+- todo..
+
+---
+
+### Java
+
+- todo..
+
+---
+
+### Python
+
+- todo..
 
