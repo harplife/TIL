@@ -33,5 +33,6 @@
 
 ### Python
 
-- todo..
+- [Sine 웨이브 소리 생성](<https://github.com/harplife/TIL/blob/master/Python/Sine_Audio_Generate.ipynb>)
+- [네이버 Top 20 검색 Crawling](<https://github.com/harplife/TIL/blob/master/Python/naver_top_search.ipynb>)
 
