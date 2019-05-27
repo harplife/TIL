@@ -19,7 +19,8 @@
 
 ### Data Science
 
-- todo..
+- Kaggle: Titanic 자료를 상관계수로 분석
+- Kaggle: Titanic 생존률을 성별로만 예측
 
 ---
 
