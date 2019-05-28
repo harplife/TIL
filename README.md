@@ -30,6 +30,9 @@
 - [자바로 SEND request 보내기 (문자열)](<https://github.com/harplife/TIL/blob/master/Java/SendGet.java>)
 - [자바로 POST request 보내기 (문자열)](<https://github.com/harplife/TIL/blob/master/Java/SendPost.java>)
 - [자바로 POST request 보내기 (이미지)](<https://github.com/harplife/TIL/blob/master/Java/SendPostImage.java>)
+- [자바 SEND/POST request 코드 예제](<https://github.com/harplife/TIL/blob/master/Java/HttpURLConnectionExample.java>)
+- [소켓 통신 (Client side)](<https://github.com/harplife/TIL/blob/master/Java/SocketClient.java>)
+- [아마존 얼굴 비교 API 사용](<https://github.com/harplife/TIL/blob/master/Java/CompareFaces.java>)
 
 ---
 
