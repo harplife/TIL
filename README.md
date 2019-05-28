@@ -4,10 +4,10 @@
 
 ## Category
 
-- [Git](<https://github.com/harplife/TIL/tree/master/Git>)
-- [Data Science](<https://github.com/harplife/TIL/tree/master/Data Science>)
-- [Java](<https://github.com/harplife/TIL/tree/master/Java>)
-- [Python](<https://github.com/harplife/TIL/tree/master/Python>)
+- [Git](<#Git>)
+- [Data Science](<#data-science>)
+- [Java](<#Java>)
+- [Python](<#Python>)
 
 ---
 
