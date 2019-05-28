@@ -27,7 +27,9 @@
 
 ### Java
 
-- todo..
+- [자바로 SEND request 보내기 (문자열)](<https://github.com/harplife/TIL/blob/master/Java/SendGet.java>)
+- [자바로 POST request 보내기 (문자열)](<https://github.com/harplife/TIL/blob/master/Java/SendPost.java>)
+- [자바로 POST request 보내기 (이미지)](<https://github.com/harplife/TIL/blob/master/Java/SendPostImage.java>)
 
 ---
 
