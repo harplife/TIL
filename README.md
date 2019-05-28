@@ -27,9 +27,10 @@
 
 ### Java
 
-- [자바로 SEND request 보내기 (문자열)](<https://github.com/harplife/TIL/blob/master/Java/SendGet.java>)
-- [자바로 POST request 보내기 (문자열)](<https://github.com/harplife/TIL/blob/master/Java/SendPost.java>)
-- [자바로 POST request 보내기 (이미지)](<https://github.com/harplife/TIL/blob/master/Java/SendPostImage.java>)
+- Rest API 활용
+  - [자바로 SEND request 보내기 (문자열)](<https://github.com/harplife/TIL/blob/master/Java/SendGet.java>)
+  - [자바로 POST request 보내기 (문자열)](<https://github.com/harplife/TIL/blob/master/Java/SendPost.java>)
+  - [자바로 POST request 보내기 (이미지)](<https://github.com/harplife/TIL/blob/master/Java/SendPostImage.java>)
 - [자바 SEND/POST request 코드 예제](<https://github.com/harplife/TIL/blob/master/Java/HttpURLConnectionExample.java>)
 - [소켓 통신 (Client side)](<https://github.com/harplife/TIL/blob/master/Java/SocketClient.java>)
 - [아마존 얼굴 비교 API 사용](<https://github.com/harplife/TIL/blob/master/Java/CompareFaces.java>)
@@ -38,6 +39,12 @@
 
 ### Python
 
-- [Sine 웨이브 소리 생성](<https://github.com/harplife/TIL/blob/master/Python/Sine_Audio_Generate.ipynb>)
+- [Sine 웨이브 소리 생성 & pyaudio 활용](<https://github.com/harplife/TIL/blob/master/Python/sine_wave_1.ipynb>)
+  - numpy로 Sine wave 생성
+  - pyaudio 패키지로 웨이브 재생
+- [Sine 웨이브 소리 생성 & pyaudio 활용 2](<https://github.com/harplife/TIL/blob/master/Python/sine_wave_2.ipynb>)
+  - numpy로 Sine wave 생성 (약간 다른 방식)
+  - Wave 패키지로 파일 저장
+  - pyaudio 패키지로 웨이브 재생
 - [네이버 Top 20 검색 Crawling](<https://github.com/harplife/TIL/blob/master/Python/naver_top_search.ipynb>)
 
