@@ -26,6 +26,7 @@
   - [Part 1 - Bag of Words + Random Forest](<https://github.com/harplife/TIL/blob/master/Data%20Science/Bag_of_Words_part1.ipynb>)
   - [Part 2 - Word2Vec](<https://github.com/harplife/TIL/blob/master/Data%20Science/Bag_of_Words_part2.ipynb>)
   - [Part 3 - Word2Vec + Random Forest](<https://github.com/harplife/TIL/blob/master/Data%20Science/Bag_of_Words_part3.ipynb>)
+- [Kaggle: Facial Keypoints](<https://github.com/harplife/TIL/blob/master/Data%20Science/facial_keypoints_nonull.ipynb>)
 
 ---
 
