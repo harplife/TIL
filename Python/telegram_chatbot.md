@@ -34,7 +34,7 @@
    - ngrok 주소 뒤에 남이 함부로 접속할 수 없게 복잡한 문자열을 추가한다.
    - 참고: ngrok public url은 8시간 시간 제한이 있어 만료 후에 다시 생성해야 된다. 다시 생성할 시에 주소가 바뀌니 webhook 설정도 매번 해줘야 된다.
 
-6. 마지막: FLASK 설정
+6. FLASK 라우트 생성 및 설정
 
    ```python
    token = "8568****:AAHdrQteZHFZzjUksx-_hv43wY9scb--Mg*"
@@ -45,8 +45,30 @@
        return '', 200
    ```
 
-   - Flask 서버, Ngrok 서버가 돌아가는 상태이며, Telegram의 webhook이 설정이 되어있으면 봇에 메시지가 가면 webhook이 ngrok을 통해 flask 서버로 연락을 해준다.
+   - Flask 서버, Ngrok 서버가 돌아가는 상태이며, Telegram의 webhook이 설정이 되어있으면 봇에 메시지가 전송될 시에 webhook이 ngrok을 통해 flask 서버로 메시지를 relay 해준다.
+   - 참고: return값은 무조건 '', 200 해줘야 된다. (API 문서 참고)
 
 7. Flask에 받는 메시지 (예: "hello")에 대해 각 기능을 설정해주면 챗봇 완료!
 
+## 추가 deet
+
+1. Telegram 사용할 시에 매번 Token값을 사용해야 되고, 이런 코드를 공유할 떄 token 값이 노출된다. 이를 방지하기 위해 다음과 같이 한다;
+
+   - decouple 패키지 설치 및 .env 파일 생성
+
+      ```bash
+      $ pip install python-decouple
+      $ touch .env
+      ```
+
+   - .env 파일에 토큰값 기입
+
+     - TOKEN='856***499:AAHdrQteZHFZzjUksx-_hv43wY9scb--Mg*'
+     
+   - token을 사용하는 각 python 파일에 다음과 같이 적용
    
+      ```python
+      from decouple import config
+      token = config('TOKEN')
+      ```
+   - github에 업로드할 시에는 .gitignore에 .env를 추가
