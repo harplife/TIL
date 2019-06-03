@@ -45,6 +45,7 @@
 - IBM Watson API 활용
   - [Text-To-Speech (문자열을 음성파일 변환)](<https://github.com/harplife/TIL/blob/master/Java/IBM_WATSON_TTS.java>)
   - [Visual Recognition (이미지 아이템 인식 및 분류)](<https://github.com/harplife/TIL/blob/master/Java/IBM_WATSON_VR.java>)
+  - [Translation (번역)](<https://github.com/harplife/TIL/blob/master/Java/IBM_WATSON_TRANS.java>)
 
 ---
 
