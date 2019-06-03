@@ -42,6 +42,9 @@
 - [자바 SEND/POST request 코드 예제](<https://github.com/harplife/TIL/blob/master/Java/HttpURLConnectionExample.java>)
 - [소켓 통신 (Client side)](<https://github.com/harplife/TIL/blob/master/Java/SocketClient.java>)
 - [아마존 얼굴 비교 API 사용](<https://github.com/harplife/TIL/blob/master/Java/CompareFaces.java>)
+- IBM Watson API 활용
+  - [Text-To-Speech (문자열을 음성파일 변환)](<https://github.com/harplife/TIL/blob/master/Java/IBM_WATSON_TTS.java>)
+  - [Visual Recognition (이미지 아이템 인식 및 분류)](<https://github.com/harplife/TIL/blob/master/Java/IBM_WATSON_VR.java>)
 
 ---
 
