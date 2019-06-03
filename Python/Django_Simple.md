@@ -59,4 +59,38 @@
 
    - http://127.0.0.1:8000/index 접속
 
-   
+10. 변수 보내기
+
+    - pages 폴더 > views.py > index 함수
+      
+      - 변수 생성
+      - render() 수정
+      
+      ```python
+      def index(request):
+          greet = 'Hello World!'
+          return render(request, 'index.html', {'hello': greet})
+      ```
+      
+      - 주의: key, value값 이름이 중복되면 안 된다.
+      
+    - templates 폴더 > index.html > {{ hello }} 추가 (jinja 코딩)
+
+11. 변수 받기
+
+    - intro 폴더 > urls.py > urlpatterns > path('index/', views.index) 수정
+
+      - 주의: 경로는 언제나 / 로 끝난다.
+      
+      ```python
+      path('index/<str:name>/', views.index)
+      ```
+      
+    - pages > views.py > index 함수 > name 받게 설정
+    
+      ```python
+      def index(request, name):
+          return render(request, 'index.html', {'name': name})
+      ```
+    
+      
