@@ -143,43 +143,28 @@
 
       - views.py에서 직접 datetime 객체를 보내서 html에서 변수로 받고 표출할 수 있다 (settings.py에 설정된 언어로 표출된다).
 
-        - Formatting
-
-          ```html
-          {{ datetime객체|date:"SHORT_DATE_FORMAT" }}
-          ```
-
-      - {% now "DATETIME_FORMAT" %}
-
-        - 객체를 따로 받을 필요 없이 시간을 표출할 수 있다.
-
-      - {% now "SHORT_DATETIME_FORMAT" %}
-
-        - 시간을 짧게 표출
-
-      - {% now "DATE_FORMAT" %}
-
-        - 날짜만 표출
-
-      - {% now "SHORT_DATE_FORMAT" %}
-
-        - 날짜만 짧게 표출
-
-      - {% now "Y년 m월 d일 (D) h:i" %}
-
-        - 2019년 6월 4일 (화요일) 11:25
-
-      - 시간을 변수로 받기
-
         ```html
-        {% now "Y" as current_yr %}
-        <p> Copyright {{ current_yr }} </p>
+{{ datetime객체 }}
+        {{ datetime객체|date:"SHORT_DATE_FORMAT" }} <!-- 포매팅 적용 -->
+        ```
+        
+- Template 고유 기능 사용
+      
+  ```html
+        {% now "DATETIME_FORMAT" %} <!-- 객체를 따로 받을 필요 없이 시간을 표출할 수 있다 -->
+  {% now "SHORT_DATETIME_FORMAT" %} <!-- 시간을 짧게 표출 -->
+        {% now "DATE_FORMAT" %} <!-- 날짜만 표출 -->
+  {% now "SHORT_DATE_FORMAT" %} <!-- 날짜만 짧게 표출 -->
+        {% now "Y년 m월 d일 (D) h:i" %} <!-- 2019년 6월 4일 (화요일) 11:25 -->
+  
+        {% now "Y" as current_yr %} <!-- 년도를 변수로 받아서 사용 -->
+  	<p> Copyright {{ current_yr }} </p>
         ```
 
     - hyperlink
 
       ```html
-      {{ 'google.com'|urlize }}
+  {{ 'google.com'|urlize }}
       ```
 
 13. Throw & Catch (Form에서 값 보내기)
