@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from telegram import say_hello, repeat, conversion, naver, bitcoin
+from telegram import say_hello, repeat, conversion, naver, bitcoin, dusty
 import pprint
 from decouple import config
 
@@ -30,6 +30,8 @@ def incoming():
             naver(sender_id)
         elif sender_msg == 'bitcoin':
             bitcoin(sender_id)
+        elif sender_msg == '미세먼지':
+            dusty(sender_id)
         else:
             repeat(sender_id, sender_msg)
 
