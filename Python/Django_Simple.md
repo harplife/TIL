@@ -197,21 +197,23 @@
          ```
 
     - templates > throw.html, catch.html 추가
-      - throw.html
 
-         ```html
-         <form action="/catch/"> <!-- route ends with / -->
-      		던질거: <input type="text" name="message">
-      		<input type="submit">
-         </form>
-         ```
+       - throw.html
+       
+          ```html
+          <form action="/catch/"> <!-- route ends with / -->
+          	던질거: <input type="text" name="message">
+          	<input type="submit">
+          </form>
+          ```
+       
+       - catch.html
+       
+          ```html
+          {% if message %}
+          	<h2>Received: "{{ message }}"</h2>
+          {% endif %}
+          ```
+       
 
-      - catch.html
-
-         ```html
-      {% if message %}
-      		<h2>Received: "{{ message }}"</h2>
-      {% endif %}
-         ```
-
-14. 
+14. TBC
