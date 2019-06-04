@@ -143,10 +143,10 @@
       - views.py에서 직접 datetime 객체를 보내서 html에서 변수로 받고 표출할 수 있다 (settings.py에 설정된 언어로 표출된다).
 
         ```html
-{{ datetime객체 }}
+  {{ datetime객체 }}
         {{ datetime객체|date:"SHORT_DATE_FORMAT" }} <!-- 포매팅 적용 -->
         ```
-        
+      
 - Template 고유 기능 사용
       
   ```html
@@ -159,6 +159,8 @@
         {% now "Y" as current_yr %} <!-- 년도를 변수로 받아서 사용 -->
   	<p> Copyright {{ current_yr }} </p>
         ```
+
+        
 
     - hyperlink
 
