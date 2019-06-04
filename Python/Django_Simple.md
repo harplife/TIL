@@ -69,10 +69,9 @@
       ```python
       def index(request):
           greet = 'Hello World!'
-          return render(request, 'index.html', {'hello': greet})
+          context = {'greet': greet}
+          return render(request, 'index.html', context)
       ```
-      
-      - 주의: key, value값 이름이 중복되면 안 된다.
       
     - templates 폴더 > index.html > {{ hello }} 추가 (jinja 코딩)
 
