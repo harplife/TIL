@@ -104,7 +104,7 @@
 
 12. 변수 받기
 
-    - intro 폴더 > urls.py > urlpatterns > path('index/', views.index) 수정
+    - intro 폴더 > urls.py > urlpatterns > `path('index/', views.index)` 수정
 
       - 주의: 경로는 언제나 / 로 끝난다.
       
@@ -274,9 +274,9 @@
     - **urls.py 정리**
 
       - intro > urls.py > urlpatterns > pages.views 사용하는 path CUT
-        - from django.urls import include 추가
-        - urlpatterns > path('pages/', include('pages.urls')) 추가
-        - urlpatterns > path('utilities/', include('utilities.urls')) 추가
+        - `from django.urls import include` 추가
+        - urlpatterns > `path('pages/', include('pages.urls'))` 추가
+        - urlpatterns > `path('utilities/', include('utilities.urls'))` 추가
       - pages > urls.py 생성 > urlpatterns > path PASTE > from . import views 추가
 
     - **pages > templates > pages 폴더 생성 > template들 모두 옮기기**
@@ -285,15 +285,15 @@
 
     - **각 template의 form태그 action 값들 수정**
 
-      - 예: action='/index/' > action='/pages/index'
+      - 예: `action='/index/'` > `action='/pages/index'`
 
     - **pages > views.py > 각 함수의 return render 수정**
 
-      - 예: return render(request, 'index.html') > return render(request, 'pages/index.html')
+      - 예: `return render(request, 'index.html')` > `return render(request, 'pages/index.html')`
 
     - **STATIC 경로 수정**
 
-      - static\stylesheets\style.css > static\앱이름\stylesheets\style.css
+      - `static\stylesheets\style.css` > `static\앱이름\stylesheets\style.css`
       - static을 불러오는 html에 link 태그 href 수정
 
     - **참고: 여러 앱을 사용할 것을 예상할 시에 미리 templates, static, urls.py, views.py 사용방식을 패키징 방식으로 적용할 것..**
