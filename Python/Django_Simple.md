@@ -26,19 +26,44 @@
 
 5. 생성된 app 등록
 
-   - intro 폴더 > settings.py > installed_apps > pages.apps.PagesConfig 추가
+   - intro 폴더 > settings.py > installed_apps
+
+     ```python
+     INSTALLED_APPS = [
+         # new apps here
+         'pages.apps.PagesConfig', # <-- 추가 부분
+     
+         # django default apps
+         'django.contrib.admin',
+         'django.contrib.auth',
+         'django.contrib.contenttypes',
+         'django.contrib.sessions',
+         'django.contrib.messages',
+         'django.contrib.staticfiles',
+     ]
+     ```
 
 6. Django 설정 (언어, 시간)
 
-   - LANGUAGE_CODE = 'ko-kr'
-   - TIME_ZONE = 'Asia/Seoul'
+   - intro 폴더 > settings.py > 수정
+
+     ```python
+     LANGUAGE_CODE = 'ko-kr'
+     TIME_ZONE = 'Asia/Seoul'
+     ```
 
 7. 경로 추가
 
    - intro 폴더 > urls.py
 
-     - from pages import views 추가
-     - urlpatterns > path('index/', views.index) 추가
+     ```python
+     from pages import views # <-- 추가
+     
+     urlpatterns = [
+         path('index/', views.index), # <-- 추가
+         path('admin/', admin.site.urls),
+     ]
+     ```
 
    - pages 폴더 > views.py
 
@@ -86,7 +111,7 @@
       ```
       
     - pages > views.py > index 함수 > name 받게 설정
-    
+
       ```python
       def index(request, name):
           return render(request, 'index.html', {'name': name})
@@ -165,7 +190,7 @@
       ```html
       {{ 'google.com'|urlize }}
       ```
-  
+
 13. Throw & Catch (Form에서 값 보내기)
 
     - intro > urls.py > urlpatterns > throw 추가, catch 추가
@@ -199,5 +224,69 @@
           {% endif %}
           ```
        
+14. 
 
-14. TBC
+## 활용 예제
+
+1. ASCII Art API 활용 [(링크)](<http://artii.herokuapp.com/>)
+
+   - intro > urls.py > urlpatterns> artii 추가, result 추가
+
+     ```python
+     urlpatterns = [
+         path('artii/', views.artii),
+         path('result/', views.result),
+     ]
+     ```
+
+   - pages > views.py > artii 추가, result 추가
+
+     ```python
+     def artii(request):
+         return render(request, 'artii.html')
+     
+     
+     def result(request):
+         font_url = "http://artii.herokuapp.com/fonts_list"
+         fonts = requests.get(font_url).text
+         fonts = fonts.split()
+         word = request.GET.get('word')
+     
+         context = {}
+         results = []
+         for x in range(5):
+             font = random.choice(fonts)
+             artii_url = f"http://artii.herokuapp.com/make?text={word}&font={font}"
+             result = requests.get(artii_url).text
+             results.append([artii_url, result])
+             context['results'] = results
+     
+         return render(request, 'result.html', context)
+     ```
+
+     - 주의: Django의 request와 requests 패키지 혼동하지 말 것..
+     - import > random, requests
+
+   - templates > artii.html, result.html 추가
+
+     - artii.html (폼 추가)
+
+       ```html
+       <form action="/result/">
+           영단어를 입력해주세요 :
+           <input type="text" name="word">
+           <input type="submit">
+       </form>
+       ```
+
+     - result.html (결과값 받기)
+
+       ```html
+       {% for x in results %}
+       	<h2>{{ x.0 }}</h2>
+       	<pre>{{ x.1 }}</pre>
+       	<hr />
+       {% endfor %}
+       ```
+
+2. 
