@@ -182,6 +182,36 @@
       {{ 'google.com'|urlize }}
       ```
 
-      
+13. Throw & Catch (Form에서 값 보내기)
 
-    - 
+    - intro > urls.py > urlpatterns > throw 추가, catch 추가
+
+    - pages > views.py > throw 함수 추가, catch 함수 추가
+      - catch 함수
+
+         ```python
+         def catch(request):
+             message = request.GET.get('message')
+             context = {'message': message}
+             return render(request, 'catch.html', context)
+         ```
+
+    - templates > throw.html, catch.html 추가
+      - throw.html
+
+         ```html
+         <form action="/catch/"> <!-- route ends with / -->
+      		던질거: <input type="text" name="message">
+      		<input type="submit">
+         </form>
+         ```
+
+      - catch.html
+
+         ```html
+      {% if message %}
+      		<h2>Received: "{{ message }}"</h2>
+      {% endif %}
+         ```
+
+14. 
