@@ -163,7 +163,7 @@
     - hyperlink
 
       ```html
-  {{ 'google.com'|urlize }}
+      {{ 'google.com'|urlize }}
       ```
   
 13. Throw & Catch (Form에서 값 보내기)
