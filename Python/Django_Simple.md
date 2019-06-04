@@ -52,7 +52,9 @@
      TIME_ZONE = 'Asia/Seoul'
      ```
 
-7. 경로 추가
+7. **참고: 이 부분은 현재 간단한 django 앱을 만드는 방식으로서, 만약 좀 더 복잡한, 여러 앱을 갖춘 django 프로젝트를 만들고자 할 시에는 [패키지 방식](<#패키징>)을 참고하길!**
+
+8. 앱 경로 추가
 
    - intro 폴더 > urls.py
 
@@ -72,11 +74,11 @@
          return render(request, 'index.html')
      ```
 
-8. index.html 파일 생성
+9. index.html 파일 생성
 
    - pages 폴더 > templates 폴더 생성 > index.html 생성
 
-9. 테스트
+10. 테스트
 
    ```bash
    $ python manage.py runserver
@@ -84,7 +86,7 @@
 
    - http://127.0.0.1:8000/index 접속
 
-10. 변수 보내기
+11. 변수 보내기
 
     - pages 폴더 > views.py > index 함수
       
@@ -100,7 +102,7 @@
       
     - templates 폴더 > index.html > {{ greet }} 추가 (jinja 코딩)
 
-11. 변수 받기
+12. 변수 받기
 
     - intro 폴더 > urls.py > urlpatterns > path('index/', views.index) 수정
 
@@ -117,7 +119,7 @@
           return render(request, 'index.html', {'name': name})
       ```
 
-12. [Django Template Lanauge](<https://docs.djangoproject.com/en/2.2/ref/templates/language/>)
+13. ## [Django 템플릿 언어 활용법](<https://docs.djangoproject.com/en/2.2/ref/templates/language/>)
 
     - for문
 
@@ -191,7 +193,7 @@
       {{ 'google.com'|urlize }}
       ```
 
-13. Throw & Catch (Form에서 값 보내기)
+14. ## Throw & Catch (Form에서 값 보내기)
 
     - intro > urls.py > urlpatterns > throw 추가, catch 추가
 
@@ -223,8 +225,8 @@
           	<h2>Received: "{{ message }}"</h2>
           {% endif %}
           ```
-       
-14. STATIC 파일 설정 (CSS)
+    
+14. ## STATIC 파일 설정 (CSS)
 
     - intro > urls.py > urlpatterns > css_example 추가
 
@@ -257,7 +259,7 @@
       }
       ```
 
-15. 패키징
+15. ## 패키징
 
     - Django는 한 앱만 사용하는게 아니라 여러 앱을 생성하고 사용할 수 있다.
 
@@ -269,7 +271,7 @@
 
     - intro > settings.py > INSTALLED_APPS > 'utilities.apps.UtilitiesConfig' 추가
 
-    - urls.py 정리
+    - **urls.py 정리**
 
       - intro > urls.py > urlpatterns > pages.views 사용하는 path CUT
         - from django.urls import include 추가
@@ -277,23 +279,28 @@
         - urlpatterns > path('utilities/', include('utilities.urls')) 추가
       - pages > urls.py 생성 > urlpatterns > path PASTE > from . import views 추가
 
-    - pages > templates > pages 폴더 생성 > template들 모두 옮기기
+    - **pages > templates > pages 폴더 생성 > template들 모두 옮기기**
 
       - utilities > templates> utilities 폴더 생성 > template은 여기에 생성
 
-    - 각 template의 form태그 action 값들 수정
+    - **각 template의 form태그 action 값들 수정**
 
       - 예: action='/index/' > action='/pages/index'
 
-    - pages > views.py > 각 함수의 return render 수정
+    - **pages > views.py > 각 함수의 return render 수정**
 
       - 예: return render(request, 'index.html') > return render(request, 'pages/index.html')
 
-    - 참고: 여러 앱을 사용할 것을 예상할 시에 미리 templates, urls.py, views.py 사용방식을 패키징 방식으로 적용할 것..
+    - **STATIC 경로 수정**
+
+      - static\stylesheets\style.css > static\앱이름\stylesheets\style.css
+      - static을 불러오는 html에 link 태그 href 수정
+
+    - **참고: 여러 앱을 사용할 것을 예상할 시에 미리 templates, static, urls.py, views.py 사용방식을 패키징 방식으로 적용할 것..**
 
 16. 
 
-## 활용 예제
+# 활용 예제
 
 1. ASCII Art API 활용 [(링크)](<http://artii.herokuapp.com/>)
 
