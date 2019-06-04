@@ -257,7 +257,41 @@
       }
       ```
 
-15. 
+15. 패키징
+
+    - Django는 한 앱만 사용하는게 아니라 여러 앱을 생성하고 사용할 수 있다.
+
+    - 앱 하나 추가 생성 (utilities 앱)
+
+      ```bash
+      $ python manage.py startapp utilities
+      ```
+
+    - intro > settings.py > INSTALLED_APPS > 'utilities.apps.UtilitiesConfig' 추가
+
+    - urls.py 정리
+
+      - intro > urls.py > urlpatterns > pages.views 사용하는 path CUT
+        - from django.urls import include 추가
+        - urlpatterns > path('pages/', include('pages.urls')) 추가
+        - urlpatterns > path('utilities/', include('utilities.urls')) 추가
+      - pages > urls.py 생성 > urlpatterns > path PASTE > from . import views 추가
+
+    - pages > templates > pages 폴더 생성 > template들 모두 옮기기
+
+      - utilities > templates> utilities 폴더 생성 > template은 여기에 생성
+
+    - 각 template의 form태그 action 값들 수정
+
+      - 예: action='/index/' > action='/pages/index'
+
+    - pages > views.py > 각 함수의 return render 수정
+
+      - 예: return render(request, 'index.html') > return render(request, 'pages/index.html')
+
+    - 참고: 여러 앱을 사용할 것을 예상할 시에 미리 templates, urls.py, views.py 사용방식을 패키징 방식으로 적용할 것..
+
+16. 
 
 ## 활용 예제
 
