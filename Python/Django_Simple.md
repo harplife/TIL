@@ -98,7 +98,7 @@
           return render(request, 'index.html', context)
       ```
       
-    - templates 폴더 > index.html > {{ hello }} 추가 (jinja 코딩)
+    - templates 폴더 > index.html > {{ greet }} 추가 (jinja 코딩)
 
 11. 변수 받기
 
@@ -224,13 +224,46 @@
           {% endif %}
           ```
        
-14. 
+14. STATIC 파일 설정 (CSS)
+
+    - intro > urls.py > urlpatterns > css_example 추가
+
+    - pages > views.py > css_example 추가
+
+    - pages > templates > css_example.html 생성
+
+      ```html
+      <!DOCTYPE html>
+      {% load static %} <!-- static 폴더 로딩 -->
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <title>Title</title>
+          <!-- css 파일 연결 -->
+          <link rel="stylesheet" href="{% static 'stylesheets/style.css' %}">
+      </head>
+      <body>
+          <h1>STATIC EXAMPLE</h1>
+      </body>
+      </html>
+      ```
+
+    - pages > static 폴더 생성 > stylesheets 폴더 생성 > style.css 생성
+
+      ```css
+      /* 아주 간단히~ */
+      h1 {
+        color: green;
+      }
+      ```
+
+15. 
 
 ## 활용 예제
 
 1. ASCII Art API 활용 [(링크)](<http://artii.herokuapp.com/>)
 
-   - intro > urls.py > urlpatterns> artii 추가, result 추가
+   - intro > urls.py > urlpatterns > artii 추가, result 추가
 
      ```python
      urlpatterns = [
