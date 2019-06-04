@@ -92,5 +92,96 @@
       def index(request, name):
           return render(request, 'index.html', {'name': name})
       ```
-    
+
+12. [Django Template Lanauge](<https://docs.djangoproject.com/en/2.2/ref/templates/language/>)
+
+    - for문
+
+      ```html
+      {% for menu in menus %}
+      	<p> {{ menu }} </p>
+      {% endfor %}
+      ```
+
+    - if문
+
+      ```html
+      {% if menu == '짜장면' %}
+      	<p> 짜장면은 고추가루랑! </p>
+      {% endif %}
+      ```
+
+    - {{ forloop.counter }}
+
+      - for문 안에 넣는다. for문이 돌아가는 순서대로 번호가 나온다.
+      - 1 부터 시작 (counter0 하면 0 부터)
+
+    - {% empty %}
+
+      - for문 안에 넣는다. for문이 돌아가는 literal이 비어있으면 empty 밑에 있는 부분이 실행된다.
+
+    - Lorem Ipsum: Placeholder 텍스트
+
+      ```html
+      {% lorem %} <!-- 빈 공간을 채우는 텍스트 -->
+      {% lorem 3 w %} <!-- 3 단어 -->
+      {% lorem 4 w random %} <!-- 4 단어, random -->
+      {% lorem p %} <!-- 1 단락 -->
+      ```
+
+    - 문자열 처리
+
+      ```html
+      {{ 'ABC'|lower }} <!-- 소문자로 변환 -->
+      {{ 'life is short'|title }} <!-- 첫문자 대문자 -->
+      {{ 'abc'|length }} <!-- 글자 길이 (3) -->
+      {{ sentence|truncatewords:3 }} <!-- 3글자 제한 -->
+      {{ sentence|truncatechars:3 }} <!-- 2문자 제한 -->
+      ```
+
+    - 날짜/시간
+
+      - views.py에서 직접 datetime 객체를 보내서 html에서 변수로 받고 표출할 수 있다 (settings.py에 설정된 언어로 표출된다).
+
+        - Formatting
+
+          ```html
+          {{ datetime객체|date:"SHORT_DATE_FORMAT" }}
+          ```
+
+      - {% now "DATETIME_FORMAT" %}
+
+        - 객체를 따로 받을 필요 없이 시간을 표출할 수 있다.
+
+      - {% now "SHORT_DATETIME_FORMAT" %}
+
+        - 시간을 짧게 표출
+
+      - {% now "DATE_FORMAT" %}
+
+        - 날짜만 표출
+
+      - {% now "SHORT_DATE_FORMAT" %}
+
+        - 날짜만 짧게 표출
+
+      - {% now "Y년 m월 d일 (D) h:i" %}
+
+        - 2019년 6월 4일 (화요일) 11:25
+
+      - 시간을 변수로 받기
+
+        ```html
+        {% now "Y" as current_yr %}
+        <p> Copyright {{ current_yr }} </p>
+        ```
+
+    - hyperlink
+
+      ```html
+      {{ 'google.com'|urlize }}
+      ```
+
       
+
+    - 
