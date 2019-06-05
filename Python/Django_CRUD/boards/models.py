@@ -12,3 +12,6 @@ class Board(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # 데이터가 수정이 될 떄 auto_now
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.id}번째 글 - {self.title}'
