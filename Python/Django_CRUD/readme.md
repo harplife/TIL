@@ -104,55 +104,82 @@ $ python manage.py migrate
     Applying sessions.0001_initial... OK
   ```
 
-## Board 테이블에 내용 추가
+## Django 데이터베이스 활용 이해 (CRUD)
 
-```bash
-$ python manage.py shell
->>> from boards.models import Board
-```
-
-### 첫 번째 방법
+### CREATE
 
 ```python
->>> Board.objects.all() # SELECT * FROM boards
-<QuerySet []>
->>> board = Board() # 테이블 인스턴스 생성
->>> board
-<Board: Board object (None)>
->>> board.title = 'new Board' # title 추가
->>> board.content = 'Hello World' # content 추가
->>> board.title
-'new Board'
->>> board.content
-'Hello World'
->>> board.save() # 저장
->>> board
-<Board: Board object (1)>
->>> Board.objects.all()
-<QuerySet [<Board: Board object (1)>]>
+from boards.models import Board
+
+# 첫번째 방식
+board = Board() # 테이블 인스턴스 생성
+board.title = 'new Board' # title 추가
+board.content = 'Hello World' # content 추가
+board.save() # 저장
+
+# 두번째 방식
+board = Board(title="Second Board", content="Hello Django")
+board.save()
+
+# 세번째 방식
+Board.objects.create(title="Third board", content="Hello YOU")
 ```
 
-### 두 번째 방법
+###  READ
 
 ```python
->>> board = Board(title="Second Board", content="Hello Django")
->>> board.save()
->>> board
-<Board: Board object (2)>
->>> Board.objects.all()
-<QuerySet [<Board: Board object (1)>, <Board: Board object (2)>]>
+# SELECT * FROM boards;
+Board.objects.all()
+
+# SELECT * FROM boards WHERE title='new Board';
+Board.objects.filter(title='new Board')
+
+# SELECT * FROM boards WHERE title='new Board' LIMIT 1;
+Board.objects.filter(title='new Board').first()
+
+# SELECT * FROM boards WHERE id=1;
+Board.objects.filter(id=1).first()
+Board.objects.get(id=1) # get()은 primary key에만.
+
+# SELECT * FROM boards ORDER BY title ASC;
+Board.objects.order_by('title').all()
+# SELECT * FROM boards ORDER BY title DESC;
+Board.objects.order_by('-title').all()
+
+# QuerySet은 리스트처럼 인덱싱, 슬라이싱 가능!
+Board.objects.all()[1] # 2번째거 갖고옴
+Board.objects.all()[:2] # 1,2번꺼 갖고옴
+
+# 포함된 내용으로 필터
+# "__contains="
+Board.objects.filter(content__contains="hello")
+# "__startswith"
+Board.objects.filter(content__startswith="hello")
+# "__endswith"
+Board.objects.filter(content__endswith="world")
+
+# 콘텐츠 확인
+Board.objects.filter(content__endswith="world").values()[0]['content']
 ```
 
-### 세 번째 방법
+### UPDATE
 
 ```python
->>> Board.objects.create(title="Third board", content="Hello YOU")
-<Board: Board object (3)>
->>> Board.objects.all()
-<QuerySet [<Board: Board object (1)>, <Board: Board object (2)>, <Board: Board object (3)>]>
+board = Board.objects.get(pk=1)
+board.title = 'Old Board' # New Board --> Old Board
+board.save # 저장~
+board # 업뎃된거 확인
 ```
 
-## Board 테이블 출력
+### DELETE
+
+```python
+board = Board.objects.get(pk=1)
+board.delete() # ... 너무 간단히 지워버린다!
+```
+
+
+## Board 테이블 출력 방식 제어
 
 ### boards > models.py 수정
 
@@ -206,40 +233,76 @@ $ python manage.py runserver
 
 - <http://127.0.0.1:8000/admin> 로 접속 (admin/password)
 
-  - ![django_capture](https://user-images.githubusercontent.com/44990492/58934444-78599080-87a5-11e9-8cab-ac835d38f887.PNG)
+  ![django_capture](https://user-images.githubusercontent.com/44990492/58934444-78599080-87a5-11e9-8cab-ac835d38f887.PNG)
 
 - Boards 클릭
 
-  - ![django_capture_2](https://user-images.githubusercontent.com/44990492/58934525-a8089880-87a5-11e9-9b9d-09cbd2a18c40.PNG)
+  ![django_capture_2](https://user-images.githubusercontent.com/44990492/58934525-a8089880-87a5-11e9-9b9d-09cbd2a18c40.PNG)
 
+## DB를 웹페이지에 연동
 
-## Django 데이터베이스 활용 이해
+### crud > urls.py 수정
 
 ```python
-from boards.models import Board
+from django.contrib import admin
+from django.urls import path, include # include 추가
 
-# SELECT * FROM boards;
-Board.objects.all()
-
-# SELECT * FROM boards WHERE title='new Board';
-Board.objects.filter(title='new Board')
-
-# SELECT * FROM boards WHERE title='new Board' LIMIT 1;
-Board.objects.filter(title='new Board').first()
-
-# SELECT * FROM boards WHERE id=1;
-Board.objects.filter(id=1).first()
-Board.objects.get(id=1) # get()은 primary key에만.
-
-# SELECT * FROM boards ORDER BY title ASC;
-Board.objects.order_by('title').all()
-# SELECT * FROM boards ORDER BY title DESC;
-Board.objects.order_by('-title').all()
-
-# QuerySet은 리스트처럼 인덱싱, 슬라이싱 가능!
-Board.objects.all()[1] # 2번째거 갖고옴
-Board.objects.all()[:2] # 1,2번꺼 갖고옴
+urlpatterns = [
+    path('boards/', include('boards.urls')), # boards 추가
+    path('admin/', admin.site.urls),
+]
 ```
+
+### boards > urls.py 생성
+
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index),
+    path('new/', views.new),  # 사용자 입력 페이지
+    path('create/', views.create),  # 데이터 저장 페이지
+]
+```
+
+### boards > templates > index.html, new.html, create.html 생성
+
+```html
+<!-- new.html 추가 부분 -->
+<form action="/boards/create/">
+	title: <input type="text" name="title" />
+	content: <textarea name="content" id="" cols="30" rows="10"></textarea>
+	<input type="submit">
+</form>
+```
+
+### boards > views.py 수정
+
+```python
+from django.shortcuts import render
+from .models import Board
+
+# Create your views here.
+def index(request):
+    return render(request, 'boards/index.html')
+
+
+def new(request):
+    return render(request, 'boards/new.html')
+
+
+def create(request):
+    title = request.GET.get('title')
+    content = request.GET.get('content')
+    board = Board()
+    board.title = title
+    board.content = content
+    board.save()
+    return render(request, 'boards/create.html')
+```
+
+### <http://127.0.0.1:8000/boards/new/> 에서 직접 값 기입해서 던져본후 데이터베이스에 값들이 저장됬는지 확인!
 
 
 
