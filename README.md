@@ -64,6 +64,7 @@
 - [빗썸 (비트코인) Crawling](<https://github.com/harplife/TIL/blob/master/Python/bitcoin_crawl.ipynb>)
 - [초간단 클래스 생성 및 활용](<https://github.com/harplife/TIL/blob/master/Python/easy_python_class.ipynb>)
 - [Flask + Ngrok + Telegram으로 챗봇 구현](<https://github.com/harplife/TIL/tree/master/Python/chatbot>)
-- [초간단 Django 활용](<https://github.com/harplife/TIL/blob/master/Python/Django_Simple.md>)
-- [Django 데이터베이스 활용](<https://github.com/harplife/TIL/tree/master/Python/Django_CRUD>)
+- Django 웹프레임워크
+  1. [초간단 Django 활용](<https://github.com/harplife/TIL/blob/master/Python/Django_Simple.md>)
+  2. [Django 데이터베이스 활용](<https://github.com/harplife/TIL/tree/master/Python/Django_CRUD>)
 
