@@ -345,7 +345,7 @@
 
 1. ASCII Art API 활용 [(링크)](<http://artii.herokuapp.com/>)
 
-   - intro > urls.py > urlpatterns > artii 추가, result 추가
+   - pages > urls.py > urlpatterns > artii 추가, result 추가
 
      ```python
      urlpatterns = [
@@ -358,7 +358,7 @@
 
      ```python
      def artii(request):
-         return render(request, 'artii.html')
+         return render(request, 'pages/artii.html')
      
      
      def result(request):
@@ -376,18 +376,18 @@
              results.append([artii_url, result])
              context['results'] = results
      
-         return render(request, 'result.html', context)
+         return render(request, 'pages/result.html', context)
      ```
 
      - 주의: Django의 request와 requests 패키지 혼동하지 말 것..
-     - import > random, requests
+     - import random, requests
 
-   - templates > artii.html, result.html 추가
+   - templates > pages > artii.html, result.html 추가
 
      - artii.html (폼 추가)
 
        ```html
-       <form action="/result/">
+       <form action="/pages/result/">
            영단어를 입력해주세요 :
            <input type="text" name="word">
            <input type="submit">
