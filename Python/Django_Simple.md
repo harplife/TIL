@@ -52,18 +52,26 @@
      TIME_ZONE = 'Asia/Seoul'
      ```
 
-7. **참고: 이 부분은 현재 간단한 django 앱을 만드는 방식으로서, 만약 좀 더 복잡한, 여러 앱을 갖춘 django 프로젝트를 만들고자 할 시에는 [패키지 방식](<#패키징>)을 참고하길!**
-
-8. 앱 경로 추가
+7. 앱 경로 추가
 
    - intro 폴더 > urls.py
 
      ```python
-     from pages import views # <-- 추가
+     from django.urls import include # <-- 추가
      
      urlpatterns = [
-         path('index/', views.index), # <-- 추가
+         path('pages/', include('pages.urls')), # <-- 추가
          path('admin/', admin.site.urls),
+     ]
+     ```
+
+   - pages 폴더 > urls.py 생성
+
+     ```python
+     from . import views
+     
+     urlpatterns = [
+         path('index/', views.index),
      ]
      ```
 
@@ -71,12 +79,12 @@
 
      ```python
      def index(request):
-         return render(request, 'index.html')
+         return render(request, 'pages/index.html')
      ```
 
 9. index.html 파일 생성
 
-   - pages 폴더 > templates 폴더 생성 > index.html 생성
+   - pages 폴더 > templates 폴더 생성 > pages 폴더 생성 > index.html 생성
 
 10. 테스트
 
@@ -84,7 +92,7 @@
    $ python manage.py runserver
    ```
 
-   - http://127.0.0.1:8000/index 접속
+   - http://127.0.0.1:8000/pages/index 접속
 
 11. 변수 보내기
 
@@ -97,14 +105,14 @@
       def index(request):
           greet = 'Hello World!'
           context = {'greet': greet}
-          return render(request, 'index.html', context)
+          return render(request, 'pages/index.html', context)
       ```
       
     - templates 폴더 > index.html > {{ greet }} 추가 (jinja 코딩)
 
 12. 변수 받기
 
-    - intro 폴더 > urls.py > urlpatterns > `path('index/', views.index)` 수정
+    - pages 폴더 > urls.py > urlpatterns > `path('index/', views.index)` 수정
 
       - 주의: 경로는 언제나 / 로 끝난다.
       
@@ -116,10 +124,66 @@
 
       ```python
       def index(request, name):
-          return render(request, 'index.html', {'name': name})
+          greet = 'Hello, '
+          context = {'greet': greet}
+          context['name'] = name
+          return render(request, 'pages/index.html', context)
+      ```
+      
+      - index.html 에 {{ greet }}{{ name }} 추가
+      - http://127.0.0.1:8000/pages/index/yourname 으로 접속하면 "Hello, yourname"이 출력된다.
+
+13. ## Layout 설정 (Base라고도 불리는듯..)
+
+    - Layout 설정은 웹사이트에 사용되는 모든 페이지의 공통점, 즉, html 태그, head 태그와 그 내용물 등을 하나의 html 파일에 모아서 자동으로 반복되게 만듦으로서 중복되는 코딩을 줄이는 방식이다.
+
+    - pages > templates > layout.html 생성
+
+      ```html
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <title>Pages</title>
+      </head>
+      <body>
+      
+      <main>
+          <header>
+              <h1>Pages</h1>
+          </header>
+      
+          <section>
+              <!-- 앞으로 다른 페이지들은 이 content라는 block안에 호출이 된다. -->
+              {% block content %} 
+              {% endblock %}
+              <!-- 참고로 content는 걍 이름이니 다르게 지정해줘도 된다. -->
+          </section>
+      
+          <footer>
+              <p>Copyright 2019</p>
+          </footer>
+      </main>
+      
+      </body>
+      </html>
       ```
 
-13. ## [Django 템플릿 언어 활용법](<https://docs.djangoproject.com/en/2.2/ref/templates/language/>)
+    - pages > templates > index.html 수정
+
+      ```html
+      {% extends 'pages/layout.html' %} <!-- layout을 상속받는다! -->
+      
+      {% block content %}
+          <h1>THIS IS PAGES INDEX PAGE</h1>
+      {% endblock %}
+      ```
+
+    - http://127.0.0.1:8000/pages/index 로 접속하면 layout.html을 상속받은 index.html이 표출된다.
+
+14. ## [Django 템플릿 언어 활용법](<https://docs.djangoproject.com/en/2.2/ref/templates/language/>)
+
+    - 주로 .html 파일들을 템플릿이라 부른다. 밑에 사용되는 코드들은 모두 html 안에서 적용되는 코드다.
 
     - for문
 
@@ -193,30 +257,39 @@
       {{ 'google.com'|urlize }}
       ```
 
-14. ## Throw & Catch (Form에서 값 보내기)
+15. ## Throw & Catch (Form에서 값 보내기)
 
-    - intro > urls.py > urlpatterns > throw 추가, catch 추가
+    - pages > urls.py > urlpatterns > throw 추가, catch 추가
 
     - pages > views.py > throw 함수 추가, catch 함수 추가
+      - throw 함수
+
+         ```python
+         def throw(request):
+             return render(request, 'pages/throw.html')
+         ```
+         
       - catch 함수
 
          ```python
          def catch(request):
              message = request.GET.get('message')
              context = {'message': message}
-             return render(request, 'catch.html', context)
+             return render(request, 'pages/catch.html', context)
          ```
-
-    - templates > throw.html, catch.html 추가
+      
+    - templates > pages > throw.html, catch.html 추가
 
        - throw.html
        
           ```html
-          <form action="/catch/"> <!-- route ends with / -->
+          <form action="/pages/catch/"> <!-- route ends with / -->
           	던질거: <input type="text" name="message">
           	<input type="submit">
           </form>
           ```
+       
+          - 주의: form 태그 action부분에 경로는 / 로 시작하고 /로 끝나야 된다.
        
        - catch.html
        
@@ -225,14 +298,16 @@
           	<h2>Received: "{{ message }}"</h2>
           {% endif %}
           ```
-    
-14. ## STATIC 파일 설정 (CSS)
+       
+    - http://127.0.0.1:8000/pages/throw 로 접속하여 변수 보내고 받기 해본다
 
-    - intro > urls.py > urlpatterns > css_example 추가
+16. ## STATIC 파일 설정 (CSS)
+
+    - pages > urls.py > urlpatterns > css_example 추가
 
     - pages > views.py > css_example 추가
 
-    - pages > templates > css_example.html 생성
+    - pages > templates > pages > css_example.html 생성
 
       ```html
       <!DOCTYPE html>
@@ -242,7 +317,7 @@
           <meta charset="UTF-8">
           <title>Title</title>
           <!-- css 파일 연결 -->
-          <link rel="stylesheet" href="{% static 'stylesheets/style.css' %}">
+          <link rel="stylesheet" href="{% static 'pages/stylesheets/style.css' %}">
       </head>
       <body>
           <h1>STATIC EXAMPLE</h1>
@@ -250,7 +325,7 @@
       </html>
       ```
 
-    - pages > static 폴더 생성 > stylesheets 폴더 생성 > style.css 생성
+    - pages > static 폴더 생성 > pages 폴더 생성 > stylesheets 폴더 생성 > style.css 생성
 
       ```css
       /* 아주 간단히~ */
@@ -258,47 +333,13 @@
         color: green;
       }
       ```
+      
+    - 참고:
 
-15. ## 패키징
+      - static/pages/images 폴더를 생성하여 이미지들을 위에 같이 가져와 사용할 수 있다.
+      - layout.html에 적용하면 상속되는 다른 페이지들도 동일한 css가 적용된다.
 
-    - Django는 한 앱만 사용하는게 아니라 여러 앱을 생성하고 사용할 수 있다.
-
-    - 앱 하나 추가 생성 (utilities 앱)
-
-      ```bash
-      $ python manage.py startapp utilities
-      ```
-
-    - intro > settings.py > INSTALLED_APPS > 'utilities.apps.UtilitiesConfig' 추가
-
-    - **urls.py 정리**
-
-      - intro > urls.py > urlpatterns > pages.views 사용하는 path CUT
-        - `from django.urls import include` 추가
-        - urlpatterns > `path('pages/', include('pages.urls'))` 추가
-        - urlpatterns > `path('utilities/', include('utilities.urls'))` 추가
-      - pages > urls.py 생성 > urlpatterns > path PASTE > from . import views 추가
-
-    - **pages > templates > pages 폴더 생성 > template들 모두 옮기기**
-
-      - utilities > templates> utilities 폴더 생성 > template은 여기에 생성
-
-    - **각 template의 form태그 action 값들 수정**
-
-      - 예: `action='/index/'` > `action='/pages/index'`
-
-    - **pages > views.py > 각 함수의 return render 수정**
-
-      - 예: `return render(request, 'index.html')` > `return render(request, 'pages/index.html')`
-
-    - **STATIC 경로 수정**
-
-      - `static\stylesheets\style.css` > `static\앱이름\stylesheets\style.css`
-      - static을 불러오는 html에 link 태그 href 수정
-
-    - **참고: 여러 앱을 사용할 것을 예상할 시에 미리 templates, static, urls.py, views.py 사용방식을 패키징 방식으로 적용할 것..**
-
-16. 
+17. 
 
 # 활용 예제
 
