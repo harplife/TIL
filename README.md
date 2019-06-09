@@ -65,4 +65,5 @@
 - Django 웹프레임워크
   1. [초간단 Django 활용](<https://github.com/harplife/TIL/blob/master/Python/Django_Simple.md>)
   2. [Django 데이터베이스 활용](<https://github.com/harplife/TIL/tree/master/Python/Django_CRUD>)
+- [opencv + numpy로 이미지 갖고 놀기](<https://github.com/harplife/TIL/blob/master/Python/Image_processing.ipynb>)
 
