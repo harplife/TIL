@@ -31,6 +31,7 @@
   - [Part 2 - train CNN to predict keypoints (using filled dataset)](<https://github.com/harplife/TIL/blob/master/Data%20Science/Facial_Keypoints_CNN_No_Null.ipynb>)
 - [초간단 Decison Tree (의사결정나무) 이해](<https://github.com/harplife/TIL/blob/master/Data%20Science/Decision_Tree_Study.ipynb>)
 - [텍스트 Detection (EAST) & Recognition (Tesseract) 모델 활용](<https://github.com/harplife/TIL>)
+- [k-Nearest Neighbors (KNN) 모델 이해](<https://github.com/harplife/TIL/blob/master/Data%20Science/k_Nearest_Neighbors_simplified.ipynb>)
 
 ---
 
