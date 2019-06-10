@@ -57,7 +57,8 @@
    - intro 폴더 > urls.py
 
      ```python
-     from django.urls import include # <-- 추가
+     from django.contrib import admin
+     from django.urls import path, include # <-- 추가
      
      urlpatterns = [
          path('pages/', include('pages.urls')), # <-- 추가
@@ -68,6 +69,7 @@
    - pages 폴더 > urls.py 생성
 
      ```python
+     from django.urls import path
      from . import views
      
      urlpatterns = [

@@ -1,0 +1,16 @@
+{% extends 'boards/base.html' %}
+{% block body %}
+<h1>Welcome to my Boards!</h1>
+
+<hr>
+<a href="/boards/new/">새로운 글 작성하러 가기!</a>
+<hr>
+
+<h2>POSTS</h2>
+{% for board in boards %}
+    <p>글 번호: {{ board.id }}</p>
+    <p>제목: {{ board.title }}</p>
+    <a href="/boards/{{ board.id }}">[상세글 보러가기]</a>
+    <hr />
+{% endfor %}
+{% endblock %}
