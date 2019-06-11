@@ -10,7 +10,11 @@
 {% for board in boards %}
     <p>글 번호: {{ board.id }}</p>
     <p>제목: {{ board.title }}</p>
-    <a href="/boards/{{ board.id }}">[상세글 보러가기]</a>
+    {% if board.updated_at %}
+    <p>updated: {{ board.updated_at }}</p>
+    {% endif %}
+    <!-- 링크 해주는 방식이 다르다~ -->
+    <a href="{% url 'boards:detail' board.id %}">[상세글 보러가기]</a>
     <hr />
 {% endfor %}
 {% endblock %}

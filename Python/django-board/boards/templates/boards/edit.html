@@ -1,13 +1,15 @@
 {% extends 'boards/base.html' %}
 {% block body %}
-<h1>Create a post!</h1>
+<h1>Edit a post!</h1>
 
 <form action="/boards/new/" method="post">
     {% csrf_token %} <!-- 보안장치? -->
+    <label for="id">Board ID</label><br />
+    <input type="text" id="id" name="id" value="{{ board.id }}" readonly/><br />
     <label for="title">Title</label><br/>
-    <input type="text" id="title" name="title"/><br/>
+    <input type="text" id="title" name="title" value="{{ board.title }}"/><br/>
     <label for="content">Content</label><br/>
-    <textarea name="content" id="content"></textarea>
+    <textarea name="content" id="content">{{ board.content }}</textarea><br/>
     <input type="submit">
 </form>
 

@@ -12,24 +12,25 @@ def index(request):
 
 # 게시글 작성하고 올리는 페이지
 def new(request):
-    return render(request, 'boards/new.html')
-
-
-"""
-new.html에서 작성한 게시글을 POST 방식으로 받고,
-데이터베이스에 저장해준다.
-저장 후 index페이지로 redirect
-"""
-def create(request):
-    title = request.POST.get('title')
-    content = request.POST.get('content')
-    board = Board()
-    board.title = title
-    board.content = content
-    board.save()
-    # print(Board.objects.all())
-    # return render(request, 'boards/create.html', context)
-    return redirect(f'/boards/{board.id}')
+    if request.method == 'GET':
+        return render(request, 'boards/new.html')
+    elif request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        id = request.POST.get('id')
+        if id:
+            board = Board.objects.get(id=id)
+            board.title = title
+            board.content = content
+            board.save()
+            return redirect('boards:detail', board.id)
+        board = Board()
+        board.title = title
+        board.content = content
+        board.save()
+        # print(Board.objects.all())
+        # return render(request, 'boards/create.html', context)
+        return redirect('boards:detail', board.id)
 
 
 # 특정 게시글 하나만 가지고 온다
@@ -44,3 +45,10 @@ def delete(request, id):
     board = Board.objects.get(id=id)
     board.delete()
     return redirect('/boards/')
+
+
+# 게시글 작성하고 올리는 페이지
+def edit(request, id):
+    board = Board.objects.get(id=id)
+    context = {'board': board}
+    return render(request, 'boards/edit.html', context)

@@ -9,5 +9,10 @@
         <input class="btn btn-danger" type="submit" value="delete board"/>
     </form>
 
+    <form action="/boards/edit/{{ board.id }}/" method="post">
+        {% csrf_token %}
+        <input class="btn" type="submit" value="EDIT"/>
+    </form>
+
     <br><a href="/boards/">back</a>
 {% endblock %}
