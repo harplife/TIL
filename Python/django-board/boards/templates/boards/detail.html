@@ -4,10 +4,6 @@
     <h2>title: {{ board.title }}</h2>
     <h3>content: {{ board.content }}</h3>
     <h4>created at : {{ board.created_at }}</h4>
-    <form action="/boards/delete/{{ board.id }}/" method="post">
-        {% csrf_token %}
-        <input class="btn btn-danger" type="submit" value="delete board"/>
-    </form>
 
     <form action="/boards/edit/{{ board.id }}/" method="post">
         {% csrf_token %}

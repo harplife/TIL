@@ -13,5 +13,10 @@
     <input type="submit">
 </form>
 
+<form action="/boards/delete/{{ board.id }}/" method="post">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="delete board"/>
+</form>
+
 <a href="{% url 'boards:index' %}">back</a>
 {% endblock %}
