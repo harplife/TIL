@@ -1,5 +1,7 @@
 # flask로 게시판 만들면서 배우기!
 
+> **밑에 내용들을 순서대로 따라 하다보면 게시판 하나 만들어진다!!**
+
 ------
 
 [TOC]
@@ -243,7 +245,144 @@
 
 4. **코드들이 너무 긴 것들은 github에 올라간 코드 참고하기를~**
 
+------
+
 ## forms
 
+> 템플릿에서 직접 form을 작성하고 routes.py에서 
+> 입력값을 받아서 처리하는 방식이 있지만, 
+> flask_wtf이란 (복잡하지만) 편리한 패키지를 대신 사용할 수 있다.
+>
+> null 값 처리, 문자길이 처리, 비번/비번확인 처리 등의 
+> Form 입력값 처리 기능들을 포함하기에
+> 따로 작성할 필요 없어 편리하다!
 
+1. flask-wtf 설치
+
+   - `pip install flask-wtf`
+
+2. 주로 게시판에 글 올리려면 로그인이 필요하다!
+
+   - 일단 계정등록과 로그인 경로를 만들어주자~
+
+     - `flaskapp.py`에서 home 경로 지정해준 것처럼
+       간단히 register, login 경로 만들어 주고 얼맞게
+       각자의 template들도 생성해주자
+
+   - 프로젝트 폴더에 `forms.py` 생성
+
+     ```python
+     from flask_wtf import FlaskForm
+     from wtforms import StringField, PasswordField, SubmitField, BooleanField
+     from wtforms.validators import DataRequired, Length, Email, EqualTo
+     
+     # 계정생성 form
+     class RegistrationForm(FlaskForm):
+     	username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+     	email = StringField('Email', validators=[DataRequired(), Email()])
+     	password = PasswordField('Password', validators=[DataRequired()])
+     	confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+     	submit = SubmitField('Sign Up')
+     
+     # 로그인 form
+     class LoginForm(FlaskForm):
+     	email = StringField('Email', validators=[DataRequired(), Email()])
+     	password = PasswordField('Password', validators=[DataRequired()])
+     	remember = BooleanField('Remember Me')
+     	submit = SubmitField('Login')
+     ```
+
+     참고:
+
+     - flask_wtf 패키지를 사용하기 위해선 클래스를 생성하고 FlaskForm을 상속받는다.
+     - `StringField`는 문자열을 받는 input 태그를 생성한다
+     - `PasswordField`는 비번을 받는 input 태그를 생성한다
+     - `SubmitField`는 submit 버튼을 생성한다
+     - `BooleanField`는 체크박스를 생성한다
+     - `validators`는 입력값을 확인해주는 기능들을 갖춘다
+       - `DataRequired`는 null 값 방지
+       - `Length`는 길이 제한
+       - `Email`은 이메일 형식 (`john@email.com`)이 맞는지 확인
+       - `EqualTo`는 지정 값과 동일한지 확인
+
+   - 위에 만든 form들을 `flaskappy.py`에 적용해주자~
+
+     ```python
+     # 참고 1
+     from forms import RegistrationForm, LoginForm
+     # 참고 2
+     app.config['SECRET_KEY'] = '42dd46dc9a5e66336105b6d43ba0d85b'
+     
+     # 참고 3(a)
+     @app.route("/register", methods=['GET', 'POST'])
+     def register():
+     	form = RegistrationForm()
+     	# 참고 3(b)
+     	if form.validate_on_submit():
+     		# 참고 4
+     		flash(f'Account created for {form.username.data}!', 'success')
+     		return redirect(url_for('home'))
+     	return render_template('register.html', title='Register', form=form)
+     
+     @app.route("/login", methods=['GET', 'POST'])
+     def login():
+     	form = LoginForm()
+     	if form.validate_on_submit():
+     		# 짜가 계정 확인 절차
+     		if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+     			flash('You have been logged in!', 'success')
+     			return redirect(url_for('home'))
+     		else:
+     			flash('Login Unsuccessful. Please check yourname and password.', 'danger')
+     	return render_template('login.html', title='Login', form=form)
+     ```
+
+     참고:
+
+     1. `forms.py`로 부터 생성했던 form 클래스들을 import 해준다
+
+     2. flask는 아주 착하게도 csrf 공격 방어 기능을 제공해준다.
+        특히 form 자체를 사용하기 위해선 SECRET_KEY라는
+        flask 설정값을 지정해줘야 된다.
+
+        - 일단 간단히 secrets라는 내부모듈로 16진수 hex값을 생성해서 사용한다 (python shell)
+
+          ```python
+          >>> import secrets
+          >>> secrets.token_hex(16)
+          '42dd46dc9a5e66336105b6d43ba0d85b'
+          ```
+
+     3. b) `form.validate_on_submit()`은 form에 제대로 된
+        입력값이 들어왔다는 신호를 POST request로 알려준다.
+        a) 그럼으로서 `@app.route()`에 POST request 받는것을 지정해줘야 된다.
+
+     4. flash 메시지는 화면 위에 이쁘게 메시지가 뜨는거다.
+        flash 메시지를 받을 수 있게 `layout.html` main 태그 안, content block 위에 설정해주자
+
+        ```html
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        	{% if messages %}
+        		{% for category, message in messages %}
+        			<div class="alert alert-{{ category }}">
+        				{{ message }}
+        			</div>
+        		{% endfor %}
+        	{% endif %}
+        {% endwith %}
+        ```
+
+   - form 클래스 생성하고, flaskapp에도 받게 설정해뒀으니
+     이제 실제로 template에 form들을 적용해주자...
+     코드가 길으니 github에 올라간 `login.html`, `register.html` 코드 참고!
+
+     - 주의: csrf 공격 방어기능을 사용하려면
+       **꼭!** form 태그안에 `{{ form.hidden_tag() }}` 기입해준다
+
+3. 테스트!
+
+   - login 페이지에서 `admin@blog.com/password`로 에러없이 로그인 되는지 확인!
+   - login 페이지에서 입력값 없이 전송하면 에러 메시지 제대로 뜨는지 확인~
+   - login 페이지에서 입력값 일부러 틀리게하면 에러 메시지 제대로 뜨는지 확인..
+   - register 페이지.. 입력값 null 테스트, 입력값 이상하게 해봐서 제대로 에러 뜨는지 확인!!
 
