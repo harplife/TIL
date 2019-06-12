@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # local apps
     'boards.apps.BoardsConfig',
+    'movies',
 
     # third party apps
     'django_extensions',

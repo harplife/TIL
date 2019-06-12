@@ -1,24 +1,46 @@
-pip install django-extensions
+ï»¿pip install django-extensions
 python manage.py shell_plus
-# ¸ğµ¨À» ±¸¼ºÇÒ¶§ ÇÊ¿äÇÑ import¹®µéÀ» ºÒ·¯¿Í ÁØ´Ù
+# ëª¨ë¸ì„ êµ¬ì„±í• ë•Œ í•„ìš”í•œ importë¬¸ë“¤ì„ ë¶ˆëŸ¬ì™€ ì¤€ë‹¤
 
 board = Board.objects.get(id=11)
-# ÁöÁ¤ º¸µå¿¡ ´ëÇÑ ÄÚ¸àÆ® ´Ş±â
+# ì§€ì • ë³´ë“œì— ëŒ€í•œ ì½”ë©˜íŠ¸ ë‹¬ê¸°
 comment = Comment()
 comment.content = 'first comment'
 comment.board = board
-# comment.board_id = board.id ·Îµµ ÀúÀå°¡´É
+# comment.board_id = board.id ë¡œë„ ì €ì¥ê°€ëŠ¥
 comment.save()
-comment.board # board Ãâ·Â
-# boardÀÇ id°¡ Ãâ·ÂµÈ´Ù
+comment.board # board ì¶œë ¥
+# boardì˜ idê°€ ì¶œë ¥ëœë‹¤
 comment.board.id
-# boardÀÇ content Ãâ·Â
+# boardì˜ content ì¶œë ¥
 comment.board.content
 
-# board¿¡ ´Ş¸° ÄÚ¸àÆ® È®ÀÎ
+# boardì— ë‹¬ë¦° ì½”ë©˜íŠ¸ í™•ì¸
 board = Board.objects.get(id=3)
 board.comment_set.all()
 
-# ÀÎ½ºÅÏ½º »ı¼ºÇÏ¸é¼­ ÄÚ¸àÆ® ´Ş±â
+# ì¸ìŠ¤í„´ìŠ¤ ìƒì„±í•˜ë©´ì„œ ì½”ë©˜íŠ¸ ë‹¬ê¸°
 comment = Comment(board_id=board.id, content='another comment')
 comment.save()
+
+# movies ì•± ìƒì„±
+python manage.py startapp movies
+
+# models.py ìˆ˜ì •
+class movie(models.Model):
+    title = models.CharField(max_length=100)
+    title_origin = models.CharField(max_length=100)
+    vote_count = models.IntegerField()
+    open_date = models.CharField(max_length=30)
+    genre = models.CharField(max_length=20)
+    score = models.FloatField()
+    poster_url = models.TextField()
+    description = models.TextField()
+
+# ëª¨ë¸ ì ìš©
+python manage.py makemigrations
+python manage.py migrate
+
+# json íŒŒì¼ì„ fixtures ë¼ëŠ” í´ë”ì•ˆì— ë„£ê³ ,
+# ë°ì´í„°ë² ì´ìŠ¤ì— ì…ë ¥ (ë°‘ì— ëª…ë ¹ì–´)
+python manage.py loaddata movies.json
