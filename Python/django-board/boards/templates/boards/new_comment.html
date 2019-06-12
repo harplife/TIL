@@ -1,0 +1,15 @@
+{% extends 'boards/base.html' %}
+{% block body %}
+
+<h1>Post a comment!</h1>
+
+<form action="{% url 'boards:new_comment' board_id %}" method="post">
+    {% csrf_token %} <!-- 보안장치? -->
+    <label for="content">Content</label><br/>
+    <textarea name="content" id="content"></textarea><br/>
+    <input type="submit">
+</form>
+
+<a href="{% url 'boards:index' %}">back</a>
+
+{% endblock %}

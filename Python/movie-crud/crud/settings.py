@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'kyr(5&^sj*%e!mpxu!y%t54_9+covorygupafijx_q32c#h911'
+SECRET_KEY = 'z*d3q$5^3l7tt6*&snr3ppwhsyb7mb0cd)!-e2+&v19)@_=5(%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,12 +32,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # local apps
-    'boards.apps.BoardsConfig',
+    'movies',
 
-    # third party apps
-    'django_extensions',
-
-    # django default apps
+    # default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -110,8 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'ko-kr'
-TIME_ZONE = 'Asia/Seoul'
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

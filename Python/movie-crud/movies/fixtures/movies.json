@@ -1,0 +1,282 @@
+[
+  {
+    "pk": 1,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "엑스맨: 다크 피닉스",
+      "title_origin": "Dark Phoenix",
+      "vote_count": 416,
+      "open_date": "2019-06-05",
+      "genre": "SF, 액션",
+      "score": 6.1,
+      "poster_url": "https://image.tmdb.org/t/p/w500/rNRfYkuRvM0z1RWHPbc2I8HCdvd.jpg",
+      "description": "어린 시절 비극적 교통사고로 자신의 능력을 알게 된 진 그레이는 자비에 영재학교에서 새로운 가족을 맞이하게 된다. 엄청난 잠재적 능력을 지닌 그녀는 엑스맨으로 성장해 우주에서 구조 임무를 수행하던 중 목숨을 잃을 뻔한 사고를 겪는다. 예기치 못한 사고 이후 폭주하는 힘과 억눌려왔던 어둠에 눈을 뜨게 된 진 그레이는 엑스맨의 가장 강력하고 파괴적인 적, 다크 피닉스로 변하게 된다. 프로페서 X는 물론 매그니토까지 능가하는 두려운 존재가 된 그녀 앞에 힘을 이용하려는 미스터리한 외계 존재가 나타나 그녀를 뒤흔들고, 지금까지 엑스맨이 이뤄온 모든 것들이 무너지는 가운데 엑스맨은 사랑하는 친구이자 가장 강력한 적이 된 다크 피닉스와 맞서야 하는데…"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "알라딘",
+      "title_origin": "Aladdin",
+      "vote_count": 1360,
+      "open_date": "2019-05-22",
+      "genre": "모험, 판타지, 로맨스, 코미디, 가족",
+      "score": 7.2,
+      "poster_url": "https://image.tmdb.org/t/p/w500/rP91MwPWLQFd15lgSA89f9h9zF8.jpg",
+      "description": "머나먼 사막 속 신비의 아그라바 왕국의 시대. 좀도둑 ‘알라딘’은 마법사 ‘자파’의 의뢰로 마법 램프를 찾아 나섰다가 주인에게 세 가지 소원을 들어주는 지니를 만나게 되고, 자스민 공주의 마음을 얻으려다 생각도 못했던 모험에 휘말리게 되는데…"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "고질라: 킹 오브 몬스터",
+      "title_origin": "Godzilla: King of the Monsters",
+      "vote_count": 461,
+      "open_date": "2019-05-29",
+      "genre": "SF, 스릴러, 액션",
+      "score": 6.4,
+      "poster_url": "https://image.tmdb.org/t/p/w500/ge8zQ874jsZBcsYxn7yV5EMHV10.jpg",
+      "description": "고질라의 샌프란시스코 공격으로 인해 아들을 잃은 상처로 엠마와 마크, 딸 매디슨 가족은 슬픔 속에 살고 있다. 미지의 생물을 연구하는 모나크 소속 과학자인 엠마는 또 다른 공격에 대비해 거대 괴수와 소통하는 주파수를 발견한다. 그러나 괴수들을 조종해 지구를 초토화 시키려는 테러 세력에게 딸 매디슨과 납치되고, 주파수로 모스라, 로단, 기도라 등 고대 괴수들이 하나 둘 깨어난다. 역대급 재난 상황에서 인류의 생존 자체조차 불투명해지고, 여기에 강력한 고질라의 등장으로 괴수들의 대결은 새로운 국면을 맞이한다. 또 다시 최악의 위기를 맞은 가족들은 어떻게든 함께 위험을 헤쳐나가야만 하는데..."
+    }
+  },
+  {
+    "pk": 4,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "존 윅 3: 파라벨룸",
+      "title_origin": "John Wick: Chapter 3 – Parabellum",
+      "vote_count": 987,
+      "open_date": "2019-05-15",
+      "genre": "범죄, 액션, 스릴러",
+      "score": 7.2,
+      "poster_url": "https://image.tmdb.org/t/p/w500/50G4HRI9B0QtWDlshYAnyPRiHQk.jpg",
+      "description": "업계 레전드 킬러 ‘존 윅’은 국제암살자연합을 통해 파문조치를 당한 후 그에게 따라 붙은 역대 최고의 현상금 1,400만 불로 인해 전 세계의 가장 위협적인 킬러들이 그와의 전쟁을 선포한다."
+    }
+  },
+  {
+    "pk": 5,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "명탐정 피카츄",
+      "title_origin": "Pokémon Detective Pikachu",
+      "vote_count": 1212,
+      "open_date": "2019-05-03",
+      "genre": "미스터리, 가족, 코미디, SF, 액션, 모험",
+      "score": 7,
+      "poster_url": "https://image.tmdb.org/t/p/w500/8Vb7PJ2aUzel5iQ6R2Jxe4MTWac.jpg",
+      "description": "기억을 잃은 채 깨어난 피카츄, 난 누구? 여긴 어디? 유일한 단서는 탐정모자에 적힌 해리란 이름과 주소. 주소 속 아파트에서 자신의 말을 유일하게 알아 듣는, 실종된 해리의 아들 팀 굿맨을 만나게 된다. 명탐정의 촉으로 이건 그야말로 대.박.사.건! 사라진 아빠를 찾기 위해 피카츄와 떠나는 기상천외한 모험이 시작된다. 피카피카!"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "어벤져스: 엔드게임",
+      "title_origin": "Avengers: Endgame",
+      "vote_count": 6684,
+      "open_date": "2019-04-24",
+      "genre": "모험, SF, 액션",
+      "score": 8.4,
+      "poster_url": "https://image.tmdb.org/t/p/w500/n78LK2t1uQP68Ud0VXHRe0HmKOp.jpg",
+      "description": "인피니티 워 이후 절반만 살아남은 지구, 마지막 희망이 된 어벤져스! 먼저 떠난 그들을 위해 모든 것을 걸었다!"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "마",
+      "title_origin": "Ma",
+      "vote_count": 105,
+      "open_date": "2019-05-29",
+      "genre": "스릴러, 공포",
+      "score": 5.9,
+      "poster_url": "https://image.tmdb.org/t/p/w500/6n7ASmQ1wY2cxTubFFGlcvPpyk7.jpg",
+      "description": ""
+    }
+  },
+  {
+    "pk": 8,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "마이펫의 이중생활  2",
+      "title_origin": "The Secret Life of Pets 2",
+      "vote_count": 79,
+      "open_date": "2019-05-24",
+      "genre": "모험, 애니메이션, 코미디, 가족",
+      "score": 6.7,
+      "poster_url": "https://image.tmdb.org/t/p/w500/lb2Mz65ImuxvaHP6wBgwyDAmWrO.jpg",
+      "description": ""
+    }
+  },
+  {
+    "pk": 9,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "로켓맨",
+      "title_origin": "Rocketman",
+      "vote_count": 362,
+      "open_date": "2019-05-22",
+      "genre": "음악, 드라마",
+      "score": 7.7,
+      "poster_url": "https://image.tmdb.org/t/p/w500/jC0r9TAgkLwk8pY8MqxyexPyhNB.jpg",
+      "description": "천재적인 음악성과 독보적인 노래로 세상을 뒤흔들며 대중을 사로잡은 ‘엘튼 존’(태런 에저튼). 연이은 히트곡 발매와 환상적인 무대 퍼포먼스, 화려한 패션으로 가장 빛나는 시대의 아이콘으로 자리잡는다. 그러나 인생 최고의 순간, 어린 시절부터 자신의 진가를 알아봐주지 못한 부모에 대한 상처와 사랑했던 친구의 배신에 무대 뒤에 숨겨진 또 다른 자신과 마주하게 되는데…"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "호텔 뭄바이",
+      "title_origin": "Hotel Mumbai",
+      "vote_count": 91,
+      "open_date": "2019-03-14",
+      "genre": "스릴러, 드라마",
+      "score": 7.8,
+      "poster_url": "https://image.tmdb.org/t/p/w500/h9AOgs7GKNJLdvoNPkmJOFB3I7H.jpg",
+      "description": "100여 년 전통의 아름다운 초호화 호텔 타지는 오늘도 전 세계에서 온 수백 명의 사람들과 직원들로 북적인다. 다양한 사람들이 호텔 안에서 저녁시간을 보내던 그 때 거대한 폭발음이 들리고 혼비백산한 인파가 호텔로 몰려온다. 그리고 그들과 함께 커다란 배낭을 멘 젊은 청년 몇몇이 호텔로 들어오는데…"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "원더랜드",
+      "title_origin": "Wonder Park",
+      "vote_count": 109,
+      "open_date": "2019-03-14",
+      "genre": "코미디, 애니메이션, 모험, 가족, 판타지",
+      "score": 6.1,
+      "poster_url": "https://image.tmdb.org/t/p/w500/8KomINZhIuJeB4oB7k7tkq8tmE.jpg",
+      "description": "한 소녀, 준의 상상력으로 만들어진 환상적인 놀이공원이 현실로 나타나는 이야기"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "파이브 피트",
+      "title_origin": "Five Feet Apart",
+      "vote_count": 670,
+      "open_date": "2019-03-15",
+      "genre": "로맨스, 드라마",
+      "score": 8.1,
+      "poster_url": "https://image.tmdb.org/t/p/w500/oXDWCIrCCA8kfz3kLIzfN61GafF.jpg",
+      "description": "같은 병을 가진 사람끼리 6피트 이상 접근해서도, 접촉도 해선 안되는 CF(낭포성 섬유증)를 가진 ‘스텔라’와 ‘윌’. 첫눈에 반한 두 사람은 서로를 위해 안전거리를 유지하려고 하지만 그럴수록 더욱 빠져든다. 손을 잡을 수도 키스를 할 수도 없는 그들은 병 때문에 지켜야 했던 6피트에서 1피트 더 가까워지는 걸 선택하고 처음으로 용기를 내 병원 밖 데이트를 결심한다. 그러나 갑자기 숨을 쉬지 못하는 ‘스텔라’. ‘윌’은 그녀를 살리기 위해 안전거리를 어기게 되는데…"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "포이즌 로즈",
+      "title_origin": "The Poison Rose",
+      "vote_count": 31,
+      "open_date": "2019-05-23",
+      "genre": "범죄, 미스터리",
+      "score": 4.4,
+      "poster_url": "https://image.tmdb.org/t/p/w500/gSzyUmg719TgAxarFZYWjLLMqvS.jpg",
+      "description": "LA에서 사립탐정으로 일하고 있는 전직 풋볼 스타 카슨 필립스 (존 트라볼타 역)는 어느 날 찾아온 의뢰인으로부터 실종된 사람을 찾아달라는 부탁을 받고 텍사스 갤버스톤으로 간다.  거기서 옛 애인을 만난 카슨은 복잡하게 얽힌 살인 사건에 휘말리게 되는데..."
+    }
+  },
+  {
+    "pk": 14,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "공포의 묘지",
+      "title_origin": "Pet Sematary",
+      "vote_count": 721,
+      "open_date": "2019-04-04",
+      "genre": "스릴러, 미스터리, 공포",
+      "score": 5.8,
+      "poster_url": "https://image.tmdb.org/t/p/w500/vMwJY1zpUZ0zsLFyIqVVWuAzZQz.jpg",
+      "description": "갑작스런 사고로 딸 엘리를 잃은 크리드(제이슨 클락)는 죽은 것이 살아 돌아온다는 애완동물 공동묘지에 딸을 묻게 되고, 어딘가 다른 모습으로 돌아온 엘리는 무시무시한 공포의 대상이 되어 가족들의 숨통을 조여오는데…"
+    }
+  },
+  {
+    "pk": 15,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "레플리카",
+      "title_origin": "Replicas",
+      "vote_count": 291,
+      "open_date": "2018-10-25",
+      "genre": "스릴러, SF",
+      "score": 5.8,
+      "poster_url": "https://image.tmdb.org/t/p/w500/vHvbd0ERau7TM9sOhMFiiX6rcK1.jpg",
+      "description": "윌의 가족들은 불의의 교통사고로 이미 세상을 떠났지만 신경과학자인 그가 가족의 복제품을 만들어 함께 살아가고 있는 것. 극비리에 가족을 복제하고 윌은 일상의 평화를 되찾지만 아내와 아이들이 하나 둘 몸과 기억의 이상을 호소하기 시작하고 생명 윤리와 법을 거스른 그는 정부의 추적에 쫓기기 시작하는데…"
+    }
+  },
+  {
+    "pk": 16,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "더 보이",
+      "title_origin": "Brightburn",
+      "vote_count": 187,
+      "open_date": "2019-05-09",
+      "genre": "공포, SF, 드라마, 스릴러",
+      "score": 5.7,
+      "poster_url": "https://image.tmdb.org/t/p/w500/eTEXcHiEk6r10HD2015xNYLUWYu.jpg",
+      "description": "어느 날, 간절히 아기를 원하던 부부에게 찾아온 다른 세계의 소년 ‘브랜든’. 부모의 보살핌 속에 평범하게 자라던 중 자신에게 숨겨진 강력한 힘을 깨닫게 되면서 인류를 위협할 사악한 본성을 드러내기 시작하는데…"
+    }
+  },
+  {
+    "pk": 17,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "애프터",
+      "title_origin": "After",
+      "vote_count": 1076,
+      "open_date": "2019-04-11",
+      "genre": "드라마, 로맨스",
+      "score": 5.9,
+      "poster_url": "https://image.tmdb.org/t/p/w500/zTZ7Q9mAwBQoYaR8HgGbmBNp6AC.jpg",
+      "description": "모범생 ‘테사’와 반항아 ‘하딘’ 강렬했던 첫 만남 이후 아슬아슬하고 위태로운 사랑을 시작한다."
+    }
+  },
+  {
+    "pk": 18,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "엽문 외전",
+      "title_origin": "葉問外傳：張天志",
+      "vote_count": 141,
+      "open_date": "2018-12-20",
+      "genre": "액션",
+      "score": 5.2,
+      "poster_url": "https://image.tmdb.org/t/p/w500/oVrm99JDN7j5Zu2yKqTINIMXasC.jpg",
+      "description": "영춘권 일인자 엽문에게 패배한 뒤, 무술계를 떠나 아들과 함께 평범한 삶을 살아가던 ‘장천지’ 우연히 암흑 조직에 쫓기던 한 여자를 도와준 그는 이후 생계는 물론, 목숨마저 위협받게 된다. 술과 마약 등 불법 사업을 확장해나가던 조직이 장천지의 주변 사람들까지 죽음으로 몰고 가자 더 이상 참지 못한 그는 정의를 위해 최후의 결전을 벌이게 되는데…"
+    }
+  },
+  {
+    "pk": 19,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "요로나의 저주",
+      "title_origin": "The Curse of La Llorona",
+      "vote_count": 352,
+      "open_date": "2019-04-17",
+      "genre": "스릴러, 공포, 미스터리",
+      "score": 5.5,
+      "poster_url": "https://image.tmdb.org/t/p/w500/8kllbCOM38idMWXzsk6mMzpbcsC.jpg",
+      "description": "1973년, 애나는 남편 없이 두 아이와 살고 있다. 사회복지사인 애나가 담당하던 한 여인의 아이들이 불의의 사고로 목숨을 잃자, 그녀는 이것이 ‘요로나’의 짓이라면서 애나에게도 똑같은 저주가 내릴 것이라 예언한다. 어느 날부터인가 울음소리를 들려오고 의문의 존재가 아이들을 위협하는데..."
+    }
+  },
+  {
+    "pk": 20,
+    "model": "movies.Movie",
+    "fields": {
+      "title": "허슬",
+      "title_origin": "The Hustle",
+      "vote_count": 194,
+      "open_date": "2019-05-09",
+      "genre": "코미디",
+      "score": 6,
+      "poster_url": "https://image.tmdb.org/t/p/w500/qibqW5Dnvqp4hcEnoTARbQgxwJy.jpg",
+      "description": ""
+    }
+  }
+]

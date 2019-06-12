@@ -2,13 +2,30 @@
 {% block body %}
     <h1>board number : {{ board.id }}</h1>
     <h2>title: {{ board.title }}</h2>
-    <h3>content: {{ board.content }}</h3>
+    <h3>content: </h3>
+    <textarea class="form-control" style="width: 25%" readonly>{{ board.content }}</textarea>
     <h4>created at : {{ board.created_at }}</h4>
 
-    <form action="/boards/edit/{{ board.id }}/" method="post">
+    <form action="{% url 'boards:edit' board.id %}" method="post">
         {% csrf_token %}
-        <input class="btn" type="submit" value="EDIT"/>
+        <input class="btn btn-primary" type="submit" value="EDIT"/>
     </form>
+    <hr>
+    <h1>Comments</h1>
+    {% if comments %}
+    {% for comment in comments %}
+    <p>ID: {{ comment.id }}</p>
+    <p>Comment: </p>
+    <textarea class="form-control" style="width: 25%" readonly>{{ comment.content }}</textarea>
+    <form action="{% url 'boards:delete_comment' board.id comment.id %}" method="post">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="delete comment"/>
+    </form>
+    {% endfor %}<br>
+    {% else %}
+    <p>There are no comments</p>
+    {% endif %}
 
-    <br><a href="/boards/">back</a>
+    <a href="{% url 'boards:new_comment' board.id %}">Add a new comment!</a><br>
+    <a href="/boards/">back</a>
 {% endblock %}

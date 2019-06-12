@@ -18,3 +18,6 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'<Board({self.board_id}): Comment({self.id} - {self.content})>'

@@ -1,0 +1,20 @@
+{% extends 'boards/base.html' %}
+{% block body %}
+
+    <h1>Board</h1>
+    <p>Board ID: {{ board.id }}</p>
+    <p>Title: {{ board.title }}</p>
+    <hr>
+    <h2>Comments section</h2>
+    {% if comments %}
+        {% for comment in comments %}
+            <p>ID: {{ comment.id }}</p>
+            <p>Comment: {{ comment.content }}</p>
+            <hr>
+        {% endfor %}
+    {% endif %}
+
+    <a href="{% url 'boards:new_comment' board.id %}">Add a new comment!</a><br>
+    <a href="{% url 'boards:index' %}">back</a>
+
+{% endblock %}
