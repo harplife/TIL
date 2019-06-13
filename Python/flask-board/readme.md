@@ -386,3 +386,199 @@
    - login 페이지에서 입력값 일부러 틀리게하면 에러 메시지 제대로 뜨는지 확인..
    - register 페이지.. 입력값 null 테스트, 입력값 이상하게 해봐서 제대로 에러 뜨는지 확인!!
 
+## SQLITE 데이터베이스 연동
+
+> Flask에서 SQLITE 데이터베이스와 연동하게 도와주는
+> ORM (Object Relational Mapping) 도구는
+> SQLALCHEMY라는 파이썬 패키지가 있다.
+> SQL문을 사용할 필요가 없이 Python코드로
+> 데이터베이스 CRUD 기능을 사용할 수 있다.
+> 이걸 사용해서 사용자계정 DB, 게시글 DB를 만든다.
+
+1. 패키지 설치
+
+   - `pip install flask-sqlalchemy`
+
+2. `flaskapp.py` 수정
+
+   ```python
+   # 밑에 부분들을 추가하면 된다~
+   from flask_sqlalchemy import SQLAlchemy
+   # sqlite기반 site.db 데이터베이스 파일사용 한다고 지정
+   app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+   # SQLAlchemy 인스턴스 생성
+   db = SQLAlchemy(app)
+   
+   # 사용자계정 데이터베이스 모델 구축!
+   class User(db.Model):
+   	id = db.Column(db.Integer, primary_key=True)
+   	username = db.Column(db.String(20), unique=True, nullable=False)
+   	email = db.Column(db.String(120), unique=True, nullable=False)
+   	image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+   	password = db.Column(db.String(60), nullable=False)
+   	# create relationship
+   	posts = db.relationship('Post', backref='author', lazy=True)
+   
+   	# dunder method, magic method
+   	def __repr__(self):
+   		return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+   
+   # 게시글 데이터베이스 모델 구축~
+   class Post(db.Model):
+   	id = db.Column(db.Integer, primary_key=True)
+   	title = db.Column(db.String(100), nullable=False)
+   	date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+   	content = db.Column(db.Text, nullable=False)
+   	# setting foreign key using User model id
+   	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+   
+   	def __repr__(self):
+   		return f"Post('{self.title}', '{self.date_posted}')"
+   ```
+
+   참고:
+
+   - 모델들은 전부 `db.Model`을 상속받는 클래스로 구성된다.
+   - `db.Column`은 테이블 열을 뜻하며, 상세한 설명은 필요없을 듯 하다.
+   - `db.relationship`에 `backref='author'`는 중요!!
+     - 보다시피 사용자계정 DB와 게시글 DB은 상관관계을 구축한다.
+       게시글을 올리려면 게정이 있어야 되고,
+       게시글 올린 계정 정보가 게시글 DB에서 query가 가능해야 된다.
+       게시글 DB에서 연결된 계정정보를 가져올때,
+       게시글.author로 하여금 데이터를 호출할 수 있다.
+   - `__repr__`이 뭔지 궁금하면 dunder 혹은 magic method 구글해보기..
+
+3. SQLALCHEMY 사용해보기!
+
+   1. 이번 단계는 웹에서 구현하는게 아니라
+      따로 python shell에서 사용해보는 단계임..
+
+   2. 프로젝트 폴더 경로에서 가상환경과 연결된 cmd 열기~
+
+   3. Python Shell에서 sqlalchemy 사용해보기
+
+      ```python
+      # db는 SQLAlchemy 인스턴스 받은 객체임
+      from flaskapp import db
+      from flaskapp import User, Post
+      
+      db.create_all() # db 생성
+      User.query.all() # User db 내용 모두 호출
+      Post.query.all() # Post db 내용 모두 호출
+      user_1 = User(username='Corey', email='C@demo.com', password='password') # 내용 생성
+      db.session.add(user_1) # 현재 세션에 내용 추가
+      user = User.query.get(1) # User db에 첫번째 계정 호출
+      post_1 = Post(title='Blog 1', content='First Post Content!', user_id=user.id) # 첫 계정으로 첫 게시글
+      post_2 = Post(title='Blog 2', content='Second Post Content!', user_id=user.id) # 첫 계정으로 2번째 게시글
+      
+      db.session.add(post_1) # 세션에 게시글 1 추가
+      db.session.add(post_2) # 세션에 게시글 2 추가
+      db.session.commit() # 세션 저장!
+      
+      user.posts # 첫 계정의 게시글들을 호출한다
+      post_1.author # 첫 글의 게시자 정보를 호출한다
+      post_2.author # 두번째 글의 게시가 정보를 호출한다
+      
+      db.drop_all() # 데이터베이스 내용 전체 삭제
+      ```
+
+## Packaging
+
+> 이 글 작성하면서 거부감이 제일 많이 가는 부분.. ㅎ
+> 페키징은 말 그대로 이쁘게 포장하는 거다.
+> 이떄까지 거의 모든 코드를 `flaskapp.py`에 쏘아붇었지만,
+> 이제부터는 코드를 기능별로 세분화해서,
+> 각자의 `.py` 모듈로 만들어 주고,
+> 이 모듈들을 파이썬 패키지로 감싸준다.
+
+1. 기능 세분화
+
+   - 현재 `flaskapp.py`에는 앱 설정, DB 모델, 라우팅 경로가 있다.
+     이들을 각자 `__init__.py`, `models.py`, `routes.py`로 나눠주자.
+
+   - `__init__.py` : 앱 설정 코드들
+
+     ```python
+     from flask import Flask
+     from flask_sqlalchemy import SQLAlchemy
+     
+     app = Flask(__name__)
+     app.config['SECRET_KEY'] = '42dd46dc9a5e66336105b6d43ba0d85b'
+     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+     db = SQLAlchemy(app)
+     
+     from flaskapp import routes
+     ```
+
+   - `models.py` : db 관련 코드들
+
+     ```python
+     from datetime import datetime
+     from flaskapp import db
+     
+     class User(db.Model):
+     	# 코드 생략
+     
+     class Post(db.Model):
+     	# 코드 생략
+     ```
+
+   - `routes.py` : 라우팅 경로 관련 코드들
+
+     ```python
+     from flask import render_template, url_for, flash, redirect
+     from flaskapp.forms import RegistrationForm, LoginForm
+     from flaskapp.models import User, Post
+     from flaskapp import app
+     
+     @app.route("/")
+     @app.route("/home")
+     def home():
+     	return render_template('home.html', posts=posts)
+     
+     # 코드 생략
+     ```
+
+   - 패키징
+
+     - 프로젝트 폴더 경로에 `flaskapp` 이름으로 폴더하나 생성
+       - 굳이 `flaskapp`이름은 고정된게 아니니 아무 이름도 됨~
+     - `flaskapp` 폴더에 위에 생성했던 파일 3개를 넣어준다!
+     - 참고: `__init__.py`가 폴더 안에 있으면 파이썬은
+       이 폴더를 파이썬 패키지로 인식한다!
+       그 말은 즉슨 `flaskapp` 폴더 안에 있는 모듈을
+       다음과 같이 호출할 수 있다;
+       `from flaskapp.models import User, Post`
+     - `site.db` 파일도 `flaskapp` 폴더로 옮겨주자!
+     - `static`, `templates` 폴더들도  `flaskapp` 폴더로 옮기자~~
+
+2. `run.py`
+
+   - 이제 `flaskapp.py`에 남아있는 코드는 딱 두 줄일 것이다!
+     `flaskapp` 패키지로부터 `app` 인스턴스 호출하는 코드 한 줄 추가.
+     그리고 `flaskapp.py`를 `run.py`로 이름을 바꿔주자!
+
+     ```python
+     from flaskapp import app
+     
+     if __name__ == '__main__':
+     	app.run(debug=True)
+     ```
+
+3. 현재 프로젝트 구조
+
+   - 최상위 프로젝트 폴더
+     - `run.py`
+     - `flaskapp` 폴더
+       - `static` 폴더
+       - `templates` 폴더
+       - `__init__.py`
+       - `forms.py`
+       - `models.py`
+       - `routes.py`
+       - `site.db`
+
+4. 테스트!!
+
+   - `python run.py`로 실행해보자~
+

@@ -44,3 +44,5 @@ python manage.py migrate
 # json 파일을 fixtures 라는 폴더안에 넣고,
 # 데이터베이스에 입력 (밑에 명령어)
 python manage.py loaddata movies.json
+
+
