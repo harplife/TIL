@@ -24,11 +24,16 @@ def new(request):
             board = Board.objects.get(id=id)
             board.title = title
             board.content = content
+            image = request.FILES.get('image')
+            board.image = image
             board.save()
             return redirect('boards:detail', board.id)
-        board = Board()
-        board.title = title
-        board.content = content
+        image = request.FILES.get('image')
+        board = Board(
+            title=title,
+            content=content,
+            image=image,
+        )
         board.save()
         # print(Board.objects.all())
         # return render(request, 'boards/create.html', context)

@@ -45,4 +45,27 @@ python manage.py migrate
 # 데이터베이스에 입력 (밑에 명령어)
 python manage.py loaddata movies.json
 
+# Boards 모델에 image필드 추가!
+1. pip install Pillow
+2. models.py - Board - 이미지 필드 추가
+3. python manage.py makemigrations
+4. python manage.py migrate
+5. views.py - new - get image
+6. new.html - input type="file" name="image" accept="image/*"
+7. new.html - form 태그에 enctype="multipart/form-data" 추가
+8. settings.py
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+9. 프로젝트 폴더 - media 폴더 생성
+10. crud - urls.py - urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 추가
 
+# 이미지 프로세싱 모듈
+pip install pilkit
+pip install django-imagekit
+# models.py 에서 image를 수정해주자~ 임포트도 잘 해주고~
+image = ProcessedImageField(
+    upload_to='boards/images', # 저장위치 (media 이후의 경로)
+    processors=[Thumbnail(200, 300)],
+    format='JPEG',
+    options={'quality': 90},
+)

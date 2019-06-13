@@ -2,7 +2,7 @@
 {% block body %}
 <h1>Edit a post!</h1>
 
-<form action="/boards/new/" method="post">
+<form action="/boards/new/" method="post" enctype="multipart/form-data">
     {% csrf_token %} <!-- 보안장치? -->
     <label for="id">Board ID</label><br />
     <input type="text" id="id" name="id" value="{{ board.id }}" readonly/><br />
@@ -10,6 +10,7 @@
     <input type="text" id="title" name="title" value="{{ board.title }}"/><br/>
     <label for="content">Content</label><br/>
     <textarea name="content" id="content">{{ board.content }}</textarea><br/>
+    <input type="file" name="image" accept="image/*"><br>
     <input type="submit">
 </form>
 

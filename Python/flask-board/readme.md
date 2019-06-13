@@ -386,7 +386,7 @@
    - login 페이지에서 입력값 일부러 틀리게하면 에러 메시지 제대로 뜨는지 확인..
    - register 페이지.. 입력값 null 테스트, 입력값 이상하게 해봐서 제대로 에러 뜨는지 확인!!
 
-## SQLITE 데이터베이스 연동
+## SQLITE 데이터베이스 설계
 
 > Flask에서 SQLITE 데이터베이스와 연동하게 도와주는
 > ORM (Object Relational Mapping) 도구는
@@ -582,3 +582,49 @@
 
    - `python run.py`로 실행해보자~
 
+## 사용자 접근 제어 + DB 연결
+
+> 웹개발에 있어 로그인 기능 구현은 거의 필수다!
+> 근데 말이 간단히 로그인 기능이지,
+> 실로 이걸 구현하려면 여러 기능들이 있어야  된다..
+> 바로 이건 첩첩산중.
+> 다행이도 flask가 이것도 해결해준다!
+> 개봉박두 LoginManager!
+
+1. LoginManager 설치
+
+   - `pip install Flask-Login`
+
+2. `./flaskapp/__init__.py` 라인 몇 개 추가~
+
+   ```python
+   from flask_login import LoginManager
+   
+   login_manager = LoginManager(app)
+   login_manager.login_view = 'login'
+   login_manager.login_message_category = 'info'
+   ```
+
+3. bcrypt
+
+   - 데이터를 암호화 해주는 기능!
+     앞으로 계정 DB에 비번 저장할때 비번을 암호화 할거임.
+
+   - 설치
+
+     - `pip install flask-bcrypt`
+
+   - `./flaskapp/__init__.py` 라인 두 개 추가
+
+     - `from flask_bcrypt import Bcrypt`
+     - `bcrypt = Bcrypt(app)`
+
+   - `./flaskapp/routes.py` 라인 여러개 추가!!
+
+     ```python
+     
+     ```
+
+     
+
+4. 

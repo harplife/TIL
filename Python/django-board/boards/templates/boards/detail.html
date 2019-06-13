@@ -2,6 +2,11 @@
 {% block body %}
     <h1>board number : {{ board.id }}</h1>
     <h2>title: {{ board.title }}</h2>
+    {% if board.image %}
+    <img src="{{ board.image.url }}" alt="{{ board.image }}">
+    {% else %}
+    <h3>이미지가 없습니다~</h3>
+    {% endif %}
     <h3>content: </h3>
     <textarea class="form-control" style="width: 25%" readonly>{{ board.content }}</textarea>
     <h4>created at : {{ board.created_at }}</h4>

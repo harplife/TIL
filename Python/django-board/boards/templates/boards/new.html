@@ -2,12 +2,13 @@
 {% block body %}
 <h1>Create a post!</h1>
 
-<form action="/boards/new/" method="post">
+<form action="/boards/new/" method="post" enctype="multipart/form-data">
     {% csrf_token %} <!-- 보안장치? -->
     <label for="title">Title</label><br/>
     <input type="text" id="title" name="title"/><br/>
     <label for="content">Content</label><br/>
     <textarea name="content" id="content"></textarea><br/>
+    <input type="file" name="image" accept="image/*"><br>
     <input type="submit">
 </form>
 
