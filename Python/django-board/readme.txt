@@ -1,4 +1,9 @@
-﻿pip install django-extensions
+﻿### 코멘트 기능 구현 ###
+
+models.py, admin.py에 코드 추가
+makemigrations, migrate 다 해주기
+
+pip install django-extensions
 python manage.py shell_plus
 # 모델을 구성할때 필요한 import문들을 불러와 준다
 
@@ -69,3 +74,7 @@ image = ProcessedImageField(
     format='JPEG',
     options={'quality': 90},
 )
+
+
+### pages ###
+django form 기능들을 활용한다!

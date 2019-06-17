@@ -571,7 +571,13 @@
      - `run.py`
      - `flaskapp` 폴더
        - `static` 폴더
+         - `main.css`
        - `templates` 폴더
+         - `home.html`
+         - `about.html`
+         - `layout.html`
+         - `login.html`
+         - `register.html`
        - `__init__.py`
        - `forms.py`
        - `models.py`
@@ -609,22 +615,71 @@
 
    - 데이터를 암호화 해주는 기능!
      앞으로 계정 DB에 비번 저장할때 비번을 암호화 할거임.
-
    - 설치
-
      - `pip install flask-bcrypt`
-
    - `./flaskapp/__init__.py` 라인 두 개 추가
-
      - `from flask_bcrypt import Bcrypt`
      - `bcrypt = Bcrypt(app)`
 
-   - `./flaskapp/routes.py` 라인 여러개 추가!!
+4. `./flaskapp/routes.py` - 계정 생성, 로그인 경로
 
-     ```python
-     
-     ```
+   ```python
+   # 추가
+   from flaskapp import app, db, bcrypt
+   from flask_login import login_user, current_user, logout_user, login_required
+   
+   @app.route("/register", methods=['GET', 'POST'])
+   def register():
+   	# 현재 접속된 계정이 있으면 redirect 해준다
+   	if current_user.is_authenticated:
+   		return redirect(url_for('home'))
+   	form = RegistrationForm()
+   	if form.validate_on_submit():
+   		# brcypt로 비번을 암호화 해준다!!!
+   		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+   		# 사용자 데이터
+   		user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+   		# 터미널에서 미리 db.create_all() 해줘야된다.
+   		# 세션 입력값 저장
+   		db.session.add(user)
+   		db.session.commit()
+   		flash('Your account has been created! You are now able to log in', 'success')
+   		return redirect(url_for('login'))
+   	return render_template('register.html', title='Register', form=form)
+   
+   @app.route("/login", methods=['GET', 'POST'])
+   def login():
+   	# 접속되어있음 딴데가라고
+   	if current_user.is_authenticated:
+   		return redirect(url_for('home'))
+   	form = LoginForm()
+   	if form.validate_on_submit():
+   		# 입력된 이메일이 db에 있는지 확인
+   		user = User.query.filter_by(email=form.email.data).first()
+   		# 비번이 매치되는지 확인
+   		if user and bcrypt.check_password_hash(user.password, form.password.data):
+   			# 이메일, 비번이 모두 매치되면 로그인!
+   			login_user(user, remember=form.remember.data)
+   			# 참고 1
+   			next_page = request.args.get('next')
+   			return redirect(next_page) if next_page else redirect(url_for('home'))
+   		else:
+   			flash('Login Unsuccessful. Please check email and password', 'danger')
+   	return render_template('login.html', title='Login', form=form)
+   ```
 
-     
+   참고:
 
-4. 
+   1. `next_page` 변수는 나중에 로그인 상태가 아니면
+      접속할 수 없는 페이지에서 로그인 페이지로
+      redirect 됬을 경우에 사용된다.
+      URL에 `next`라는 키값으로 접속하려 했던 경로를
+      받아논 상태에서, 로그인이 되고 난 후에
+      그 경로로 다시 redirect 해준다!
+
+5. 계정 확인 페이지 추가!
+
+   - `../templates/account.html`
+     - 
+   - `./flaskapp/routes.py`에 경로 추가
+

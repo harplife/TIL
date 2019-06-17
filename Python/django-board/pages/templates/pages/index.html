@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>this is Pages index!</h1>
+    {% if posts %}
+        {% for post in posts %}
+            <p>{{ post }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

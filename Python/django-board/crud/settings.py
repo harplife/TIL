@@ -34,9 +34,11 @@ INSTALLED_APPS = [
     # local apps
     'boards.apps.BoardsConfig',
     'movies',
+    'pages',
 
     # third party apps
     'django_extensions',
+    'imagekit',
 
     # django default apps
     'django.contrib.admin',
