@@ -67,4 +67,5 @@
   2. [Django 데이터베이스 활용](<https://github.com/harplife/TIL/tree/master/Python/Django_CRUD>)
 - [opencv + numpy로 이미지 갖고 놀기](<https://github.com/harplife/TIL/blob/master/Python/Image_processing.ipynb>)
 - [Flask 웹프레임워크](<https://github.com/harplife/TIL/tree/master/Python/flask-board#flask로-게시판-만들면서-배우기>)
+- [Concurrent Futures (분산처리)](<https://github.com/harplife/TIL/blob/master/Python/Concurrent_futures.ipynb>)
 
