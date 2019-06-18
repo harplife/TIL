@@ -1,0 +1,18 @@
+{% extends 'pages/base.html' %}
+
+{% block body %}
+    <h1>Detail</h1>
+    <hr />
+    <p>글 번호: {{ post.pk }}</p>
+    <p>글 제목: {{ post.title }}</p>
+    <p>글 내용: {{ post.content }}</p>
+    <p>글 생성시각: {{ post.created_at }}</p>
+    <p>글 수정시각: {{ post.updated_at }}</p>
+    <hr />
+    <form action="{% url 'pages:delete' post.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="삭제하기" />
+    </form>
+    <a href="{% url 'pages:update' post.pk %}">[수정하기]</a>
+    <a href="{% url 'pages:index' %}">[뒤로가기]</a>
+{% endblock %}

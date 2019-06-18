@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # third party apps
     'django_extensions',
     'imagekit',
+    'bootstrap4',
 
     # django default apps
     'django.contrib.admin',
