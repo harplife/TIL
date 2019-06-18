@@ -3,7 +3,11 @@
 {% block body %}
 <div class="jumbotron">
     <h1>게시글 목록</h1>
+    {% if user.is_authenticated %}
     <a href="{% url 'pages:create' %}">[게시글 작성]</a>
+    {% else %}
+    <p>새 글을 쓰러면 <a href="{% url 'accounts:login' %}">[로그인]</a> 하세요!</p>
+    {% endif %}
 </div>
 
 {% for post in posts %}

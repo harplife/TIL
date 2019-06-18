@@ -1,0 +1,18 @@
+{% extends 'pages/base.html' %}
+{% load bootstrap4 %}
+
+{% block body %}
+
+<h1>회원수정</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons submit="수정하기" reset="Cancel" %}{% endbuttons %}
+</form>
+
+<form action="{% url 'accounts:delete' %}" method="post">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="계정삭제">
+</form>
+
+{% endblock %}

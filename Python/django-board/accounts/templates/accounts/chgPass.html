@@ -1,0 +1,13 @@
+{% extends 'pages/base.html' %}
+{% load bootstrap4 %}
+
+{% block body %}
+
+<h1>비밀번호 변경</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons submit="변경" reset="Cancel" %}{% endbuttons %}
+</form>
+
+{% endblock %}

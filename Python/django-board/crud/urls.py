@@ -23,6 +23,7 @@ urlpatterns = [
     path('boards/', include('boards.urls')),
     path('movies/', include('movies.urls')),
     path('pages/', include('pages.urls')),
+    path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
 ]
 

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'boards.apps.BoardsConfig',
     'movies',
     'pages',
+    'accounts',
 
     # third party apps
     'django_extensions',
