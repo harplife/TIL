@@ -68,4 +68,14 @@
 - [opencv + numpy로 이미지 갖고 놀기](<https://github.com/harplife/TIL/blob/master/Python/Image_processing.ipynb>)
 - [Flask 웹프레임워크](<https://github.com/harplife/TIL/tree/master/Python/flask-board#flask로-게시판-만들면서-배우기>)
 - [Concurrent Futures (분산처리)](<https://github.com/harplife/TIL/blob/master/Python/Concurrent_futures.ipynb>)
+- [XML 읽어보기](<https://github.com/harplife/TIL/blob/master/Python/xml_parse.ipynb>)
+- [Subprocess 사용해보기](<https://github.com/harplife/TIL/blob/master/Python/subprocess.ipynb>)
+- [PILLOW로 .gif 이미지 만들어보기](<https://github.com/harplife/TIL/blob/master/Python/pillow_make_gif.ipynb>)
+- 분산처리
+  - [Multiprocessor 사용해보기](<https://github.com/harplife/TIL/blob/master/Python/multiprocessor.py>)
+  - [Concurrent Futures 사용해보기](<https://github.com/harplife/TIL/blob/master/Python/Concurrent_futures.ipynb>)
+- [Generator 만들어보기](<https://github.com/harplife/TIL/blob/master/Python/generator.ipynb>)
+- [출력하고 flush 하기](<https://github.com/harplife/TIL/blob/master/Python/Print_Flush.ipynb>)
+- [오라클 DB에 연결해보기](<https://github.com/harplife/TIL/blob/master/Python/DB_Oracle_Connect.ipynb>)
+- 
 
