@@ -79,5 +79,8 @@
 - [Generator 만들어보기](<https://github.com/harplife/TIL/blob/master/Python/generator.ipynb>)
 - [출력하고 flush 하기](<https://github.com/harplife/TIL/blob/master/Python/Print_Flush.ipynb>)
 - [오라클 DB에 연결해보기](<https://github.com/harplife/TIL/blob/master/Python/DB_Oracle_Connect.ipynb>)
+- [TIMESTAMP 사용하기](<https://github.com/harplife/TIL/blob/master/Python/TIMESTAMP.ipynb>)
+- [Numpy 기본](<https://github.com/harplife/TIL/blob/master/Python/numpy_basics.ipynb>)
+  - [Numpy 활용 (MovieLense 데이터셋)](<https://github.com/harplife/TIL/blob/master/Python/numpy_movielens.ipynb>)
 - 
 
