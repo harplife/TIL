@@ -26,12 +26,14 @@
   - [Part 1 - Bag of Words + Random Forest](<https://github.com/harplife/TIL/blob/master/Data%20Science/Bag_of_Words_part1.ipynb>)
   - [Part 2 - Word2Vec](<https://github.com/harplife/TIL/blob/master/Data%20Science/Bag_of_Words_part2.ipynb>)
   - [Part 3 - Word2Vec + Random Forest](<https://github.com/harplife/TIL/blob/master/Data%20Science/Bag_of_Words_part3.ipynb>)
+  - [Word2Vec 좀더 이해해보기](<https://github.com/harplife/TIL/blob/master/Data%20Science/Word2Vec_tensorflow.ipynb>)
 - Kaggle: Facial Keypoints
   - [Part 1 - train NN to fill Null keypoints](<https://github.com/harplife/TIL/blob/master/Data%20Science/Facial_Keypoints_NN_Fill_Null.ipynb>)
   - [Part 2 - train CNN to predict keypoints (using filled dataset)](<https://github.com/harplife/TIL/blob/master/Data%20Science/Facial_Keypoints_CNN_No_Null.ipynb>)
 - [초간단 Decison Tree (의사결정나무) 이해](<https://github.com/harplife/TIL/blob/master/Data%20Science/Decision_Tree_Study.ipynb>)
 - [텍스트 Detection (EAST) & Recognition (Tesseract) 모델 활용](<https://github.com/harplife/TIL>)
 - [k-Nearest Neighbors (KNN) 모델 이해](<https://github.com/harplife/TIL/blob/master/Data%20Science/k_Nearest_Neighbors_simplified.ipynb>)
+- [Tesseract로 이미지에서 문자 검출](<https://github.com/harplife/TIL/blob/master/Data%20Science/Pytesseract.ipynb>)
 
 ---
 
