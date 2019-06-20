@@ -3,6 +3,7 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import Thumbnail
 from django.conf import settings
 
+
 # Create your models here.
 
 
@@ -11,7 +12,7 @@ class Post(models.Model):
     content = models.TextField()
     # image = models.ImageField(blank=True) # 해당 필드에 null값이 들어가도 된다
     image = ProcessedImageField(
-        upload_to='pages/images', # 저장위치 (media 이후의 경로)
+        upload_to='pages/images',  # 저장위치 (media 이후의 경로)
         processors=[Thumbnail(200, 300)],
         format='JPEG',
         options={'quality': 90},
@@ -22,6 +23,21 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # django의 user 모델을 참조한다
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    like_users = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='liked_posts',
+        blank=True
+    )
 
     def __str__(self):
         return f'{self.id}. {self.title}'
+
+
+class Comment(models.Model):
+    content = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.content

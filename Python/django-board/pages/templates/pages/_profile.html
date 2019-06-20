@@ -1,0 +1,15 @@
+<div class="jumbotron text-center">
+    <p class="lead mb-1">작성자 정보</p>
+    <h1 class="display-4">{{ post.user }}</h1>
+    <hr>
+    <p class="read">
+        Following : {{ person.followings.all | length }} / Followers : {{ person.followers.all | length }}
+    </p>
+    {% if person != user %}
+        {% if user in person.followers.all %}
+            <a href="{% url 'pages:follow' post.pk post.user_id %}" class="btn btn-primary btn-lg">unfollow</a>
+        {% else %}
+            <a href="{% url 'pages:follow' post.pk post.user_id %}" class="btn btn-primary btn-lg">follow</a>
+        {% endif %}
+    {% endif %}
+</div>

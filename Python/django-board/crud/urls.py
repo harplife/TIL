@@ -24,6 +24,9 @@ urlpatterns = [
     path('movies/', include('movies.urls')),
     path('pages/', include('pages.urls')),
     path('accounts/', include('accounts.urls')),
+    # 소셜 로그인 기능 경로 추가
+    # 무조건 custom accounts 부분 밑에 있어야 된다!
+    path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
 ]
 

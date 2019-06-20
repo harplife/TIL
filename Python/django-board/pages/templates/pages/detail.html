@@ -1,18 +1,64 @@
 {% extends 'pages/base.html' %}
+{% load bootstrap4 %}
 
 {% block body %}
+
     <h1>Detail</h1>
+    {% include 'pages/_profile.html' %}
     <hr />
-    <p>글 번호: {{ post.pk }}</p>
-    <p>글 제목: {{ post.title }}</p>
-    <p>글 내용: {{ post.content }}</p>
-    <p>글 생성시각: {{ post.created_at }}</p>
-    <p>글 수정시각: {{ post.updated_at }}</p>
+    <p>번호: {{ post.pk }}</p>
+    <p>제목: {{ post.title }}</p>
+<!--    <p>작성자: {{ post.user }}</p>-->
+    <p>내용: {{ post.content }}</p>
+    <p>생성시각: {{ post.created_at }}</p>
+    <p>수정시각: {{ post.updated_at }}</p>
+    <a href="{% url 'pages:like' post.pk %}" class="text-danger">
+        {% if user in post.like_users.all %}
+        <i class="fas fa-heart"></i>
+        {% else %}
+        <i class="far fa-heart"></i>
+        {% endif %}
+    </a>
+    <strong>{{ post.like_users.all | length }}명이 좋아합니다!</strong>
     <hr />
-    <form action="{% url 'pages:delete' post.pk %}" method="post">
+{% if user == post.user %}
+    <!--  form class d-inline 하면 라인에 공간 일부만 차지한다.  -->
+    <form class="d-inline" action="{% url 'pages:delete' post.pk %}" method="post">
         {% csrf_token %}
-        <input type="submit" value="삭제하기" />
+        <input class="btn btn-danger" type="submit" value="삭제하기" />
     </form>
-    <a href="{% url 'pages:update' post.pk %}">[수정하기]</a>
-    <a href="{% url 'pages:index' %}">[뒤로가기]</a>
+    <a class="btn btn-warning" href="{% url 'pages:update' post.pk %}">수정하기</a>
+{% endif %}
+    <a class="btn btn-secondary" href="{% url 'pages:index' %}">뒤로가기</a>
+
+    <hr />
+    <h3>Comments</h3>
+
+    {% if user.is_authenticated %}
+    <form action="{% url 'pages:make_comment' post.pk %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form comment_form %}
+        <input type="submit" class="btn btn-primary" value="댓글달기">
+    </form>
+    {% else %}
+    <p>댓글을 작성하려면 <a href="{% url 'accounts:login' %}">로그인</a> 해주세요!</p>
+    {% endif %}
+
+
+    <hr />
+
+    {% for comment in comments %}
+        <strong>{{ comment.user }}</strong>
+        <span class="ml-3">{{ comment.content }}</span>
+        {% if user ==  comment.user %}
+        <form class="d-inline ml-4" action="{% url 'pages:delete_comment' post.pk comment.pk %}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-link text-danger" value="댓글삭제">
+        </form>
+        {% endif %}
+        <br>
+    {% empty %}
+        <p>아직 댓글이 없습니다.</p>
+    {% endfor %}
+
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Comment
 
 # Register your models here.
 
@@ -10,3 +10,7 @@ class PostAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at', 'updated_at', ] # admin페이지에서 볼수 있게 설정
 
 
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'content', 'created_at', )
+    readonly_fields = ['created_at', ]

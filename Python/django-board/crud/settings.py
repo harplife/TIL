@@ -27,6 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    # 원래는 django oauth 문서에는 밑에처럼 하라고 했었지만,
+    # 이거땜시 에러 나는게 있어서 없애야 된다..?
+    # 'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 
 # Application definition
 
@@ -36,11 +43,17 @@ INSTALLED_APPS = [
     'movies',
     'pages',
     'accounts',
+    'manytomany',
 
     # third party apps
     'django_extensions',
     'imagekit',
     'bootstrap4',
+    # 소셜 계정 로그인 기능 구현 관련 앱들
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.kakao',
 
     # django default apps
     'django.contrib.admin',
@@ -49,7 +62,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # 소셜 로그인 추가 사항
 ]
+
+SITE_ID = 1  # 소셜 로그인 추가 사항
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -133,3 +149,10 @@ STATIC_URL = '/static/'
 # domain.com/media/sample.png
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 앞으로 django가 사용할 user 모델 override 된다.
+# settings.AUTH_USER_MODEL
+AUTH_USER_MODEL = 'accounts.User'
+
+
+LOGIN_REDIRECT_URL = 'pages:index'
