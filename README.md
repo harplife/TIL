@@ -19,8 +19,9 @@
 
 ### Data Science
 
-- [Kaggle: Titanic 자료를 상관계수로 분석](<https://github.com/harplife/TIL/blob/master/Data%20Science/Titanic_Correlations.ipynb>)
-- [Kaggle: Titanic 생존률을 성별로만 예측](<https://github.com/harplife/TIL/blob/master/Data%20Science/Titanic_Gender_Only.ipynb>)
+- Kaggle: Titanic
+  - [데이터를 상관계수로 분석](<https://github.com/harplife/TIL/blob/master/Data%20Science/Titanic_Correlations.ipynb>)
+  - [생존률을 성별로만 예측](<https://github.com/harplife/TIL/blob/master/Data%20Science/Titanic_Gender_Only.ipynb>)
 - [Kaggle: Digit Recognizer 앙셈블 활용](<https://github.com/harplife/TIL/blob/master/Data%20Science/Digit_Recognizer_Ensemble.ipynb>)
 - Kaggle: Word2Vec
   - [Part 1 - Bag of Words + Random Forest](<https://github.com/harplife/TIL/blob/master/Data%20Science/Bag_of_Words_part1.ipynb>)
@@ -66,7 +67,13 @@
 - [Flask + Ngrok + Telegram으로 챗봇 구현](<https://github.com/harplife/TIL/tree/master/Python/chatbot>)
 - Django 웹프레임워크
   1. [초간단 Django 활용](<https://github.com/harplife/TIL/blob/master/Python/Django_Simple.md>)
-  2. [Django 데이터베이스 활용](<https://github.com/harplife/TIL/tree/master/Python/Django_CRUD>)
+  2. [Django + 데이터베이스 활용](<https://github.com/harplife/TIL/tree/master/Python/Django_CRUD>)
+  3. [거의 완성형 게시판](<https://github.com/harplife/TIL/tree/master/Python/django-board>)
+     - Pages - 게시글 CRUD
+     - Accounts - 사용자 계정 CRUD
+     - 좋아요! 기능
+     - 팔로우 기능
+     - 소셜미디어(카톡) 로그인 기능
 - [opencv + numpy로 이미지 갖고 놀기](<https://github.com/harplife/TIL/blob/master/Python/Image_processing.ipynb>)
 - [Flask 웹프레임워크](<https://github.com/harplife/TIL/tree/master/Python/flask-board#flask로-게시판-만들면서-배우기>)
 - [Concurrent Futures (분산처리)](<https://github.com/harplife/TIL/blob/master/Python/Concurrent_futures.ipynb>)
@@ -77,7 +84,7 @@
   - [Multiprocessor 사용해보기](<https://github.com/harplife/TIL/blob/master/Python/multiprocessor.py>)
   - [Concurrent Futures 사용해보기](<https://github.com/harplife/TIL/blob/master/Python/Concurrent_futures.ipynb>)
 - [Generator 만들어보기](<https://github.com/harplife/TIL/blob/master/Python/generator.ipynb>)
-- [출력하고 flush 하기](<https://github.com/harplife/TIL/blob/master/Python/Print_Flush.ipynb>)
+- [문자열 print + flush](<https://github.com/harplife/TIL/blob/master/Python/Print_Flush.ipynb>)
 - [오라클 DB에 연결해보기](<https://github.com/harplife/TIL/blob/master/Python/DB_Oracle_Connect.ipynb>)
 - [TIMESTAMP 사용하기](<https://github.com/harplife/TIL/blob/master/Python/TIMESTAMP.ipynb>)
 - [Numpy 기본](<https://github.com/harplife/TIL/blob/master/Python/numpy_basics.ipynb>)
