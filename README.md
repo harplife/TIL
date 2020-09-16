@@ -8,6 +8,7 @@
 - [Data Science](<#data-science>)
 - [Java](<#Java>)
 - [Python](<#Python>)
+- [Misc](<#Misc>)
 
 ---
 
@@ -91,3 +92,8 @@
   - [Numpy 활용 (MovieLense 데이터셋)](<https://github.com/harplife/TIL/blob/master/Python/numpy_movielens.ipynb>)
 - 
 
+---
+
+### Misc
+
+- [윈도우20 WSL 우분투20.04 설치 가이드](<https://github.com/harplife/TIL/blob/master/Windows10_WSL_Ubuntu2004_Guide.md>)
