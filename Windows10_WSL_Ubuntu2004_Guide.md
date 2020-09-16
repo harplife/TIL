@@ -90,3 +90,31 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
    ```python
    print('hello world')
    ```
+
+## ZSH (& Oh My Zsh) 설정
+
+그냥 bash사용하는 것도 괜찮지만 리눅스를 뽀대나게 사용하려면 zsh와 테마/플러그인 관리기능 oh my zsh도 깔아주면 좋다.
+
+1. zsh 테마들을 사용하려면 powerline 폰트가 설치되어야 한다.
+
+   ```bash
+   sudo apt install fonts-powerline
+   ```
+
+2. zsh를 깔아주고 기본 Shell로 지정한다.
+
+   ```bash
+   sudo apt install zsh
+   zsh --version # 제대로 깔렸으면 5.x 이상 버전으로 확인된다.
+   chsh -s $(which zsh) # 기본 Shell 설정
+   exec zsh # 기존 세션을 새 세션으로 대체한다
+   echo $SHELL # /bin/zsh라고 비스므래 떠야 정상.
+   ```
+
+3. oh my zsh를 깔아주고 테마를 바꿔준다.
+
+   ```zsh
+   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+   vim ~/.zshrc # zsh 설정파일이니 잘 참고하자
+   ```
+   .zshrc 파일 내에 `ZSH_THEME="robbyrussell"`로 되어있는 영역이 있다. robbyrussell 대신 agnoster로 대체하고 `exec zsh` 해준다.
