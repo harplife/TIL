@@ -43,6 +43,7 @@
    ```
 
 7. 혹시 방금 설치한 Ubuntu 20.04가 기본으로 설정되어 있지 않으면 밑에 명령어 실행해주자.
+
    ```powershell
    wslconfig /setdefault Ubuntu-20.04
    ```
@@ -59,6 +60,8 @@
    sudo apt update
    sudo apt upgrade
    ```
+
+12. WSL 커널 삭제하고자 하면 `wslconfig /u 커널이름` 해주면 된다. 물론 파일은 직접 지워주면 끝이다. Uninstall 절차하나 필요없으니 참 좋다.
 
 ## ZSH (& Oh My Zsh) 설정
 
