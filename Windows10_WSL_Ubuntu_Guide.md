@@ -1,4 +1,4 @@
-# Windows 10 WSL Ubuntu 20.04 가이드라인
+# Windows 10 WSL Ubuntu 가이드라인
 
 ## 개요
 
@@ -14,23 +14,23 @@
    cd D:\\WSL
    ```
 
-2. Microsoft Store 사이트(aka.ms)에서 Ubuntu 설치 파일만 가져온다. Store를 통해서 설치하는게 아닌것 꼭 참고. Ubuntu 설치 파일은 MS에서 대놓고 공개하는게 아니기 때문에 재량껏 찾아봐야 된다. 일단 밑에 명령어는 Ubuntu 20.04버전 설치파일을 가져오는 거니 그냥 사용할 것.
+2. Microsoft Store 사이트(aka.ms)에서 Ubuntu 설치 파일만 가져온다. Store를 통해서 설치하는게 아닌것 꼭 참고. Ubuntu 설치 파일은 MS에서 대놓고 공개하는게 아니기 때문에 재량껏 찾아봐야 된다. 일단 밑에 명령어는 Ubuntu 20.04버전 설치파일을 가져오는 거니 그냥 사용할 것. 무조건 최신께 좋은게 아닌것이니 [Ubuntu 18.04 버전 링크](https://aka.ms/wsl-ubuntu-1804), [Ubuntu 16.04 버전 링크](https://aka.ms/wsl-ubuntu-1604) 참고.
 
    ```powershell
-   Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
+   Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile wslubuntu2004.appx -UseBasicParsing
    ```
 
 3. 설치파일이 .appx 형식으로 되어있어 zip파일로 변환해주고 압축 풀어준다.
 
    ```powershell
-   move .\Ubuntu.appx .\Ubuntu.zip
-   Expand-Archive .\Ubuntu.zip
+   move .\wslubuntu2004.appx .\wslubuntu2004.zip
+   Expand-Archive .\wslubuntu2004.zip
    ```
 
 4. 압축 풀어줘서 나온 Ubuntu 폴더에 들어가면 ubuntu2004.exe 파일이 있다. 실행해주자.
 
    ```powershell
-   cd .\Ubuntu\
+   cd .\wslubuntu2004\
    .\ubuntu2004.exe
    ```
 
@@ -48,6 +48,8 @@
    ```
 
 8. 여기까지 에러없이 됬다면 끝이다. 에러 났으면 스택신님과 구글신님께 여쭤볼것.
+
+9. 아직까지는 동일 버전 WSL Ubuntu를 여러개 설치하는 방법은 모르겠다. 파일명까지 바꿔가면서 시도는 해봤으나 결국 WSL이 Ubuntu 실행파일이 동일하다고 여기기 때문에 구분해서 사용이 불가능하다. 하지만 다른 버전 WSl Ubuntu를 설치하면 제대로 된다는 점이 있고, 정 안되면 WSL Ubuntu내에 Docker를 사용하는 것도 옵션이긴 하다.
 
 ## ZSH (& Oh My Zsh) 설정
 
