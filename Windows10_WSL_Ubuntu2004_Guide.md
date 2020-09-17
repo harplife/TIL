@@ -49,6 +49,34 @@
 
 8. 여기까지 에러없이 됬다면 끝이다. 에러 났으면 스택신님과 구글신님께 여쭤볼것.
 
+## ZSH (& Oh My Zsh) 설정
+
+그냥 bash사용하는 것도 괜찮지만 리눅스를 뽀대나게 사용하려면 zsh와 테마/플러그인 관리기능 oh my zsh도 깔아주면 좋다.
+
+1. zsh 테마들을 사용하려면 powerline 폰트가 설치되어야 한다.
+
+   ```bash
+   sudo apt install fonts-powerline
+   ```
+
+2. zsh를 깔아주고 기본 Shell로 지정한다.
+
+   ```bash
+   sudo apt install zsh
+   zsh --version # 제대로 깔렸으면 5.x 이상 버전으로 확인된다.
+   chsh -s $(which zsh) # 기본 Shell 설정
+   exec zsh # 기존 세션을 새 세션으로 대체한다
+   echo $SHELL # /bin/zsh라고 비스므래 떠야 정상.
+   ```
+
+3. oh my zsh를 깔아주고 테마를 바꿔준다.
+
+   ```zsh
+   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+   vim ~/.zshrc # zsh 설정파일이니 잘 참고하자
+   ```
+   .zshrc 파일 내에 `ZSH_THEME="robbyrussell"`로 되어있는 영역이 있다. robbyrussell 대신 agnoster로 대체하고 `exec zsh` 해준다.
+
 ## 파이썬 기본 설정
 
 WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이 설치되어 있는 것을 확인할 수 있다 (2020.09.16 기준). 파이썬 가상환경 하나 만들어서 테스트까지 해주자.
@@ -91,30 +119,20 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
    print('hello world')
    ```
 
-## ZSH (& Oh My Zsh) 설정
+## NGROK 설정
 
-그냥 bash사용하는 것도 괜찮지만 리눅스를 뽀대나게 사용하려면 zsh와 테마/플러그인 관리기능 oh my zsh도 깔아주면 좋다.
+내부망을 외부망으로 공유하는 NGROK을 설정해보자.
 
-1. zsh 테마들을 사용하려면 powerline 폰트가 설치되어야 한다.
+1. [NGROK 다운로드 페이지](https://ngrok.com/download)에 접속하여 MORE OPTIONS 버튼을 눌러 리눅스 버전 다운로드 [링크](https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip)를 복사한다. 그냥 다운로드해서 WSL에서 그냥 찾아가는 것도 일종의 방법이지만.. 리눅스는 리눅스 답게 코맨드라인으로 해결해보자!
 
-   ```bash
-   sudo apt install fonts-powerline
-   ```
-
-2. zsh를 깔아주고 기본 Shell로 지정한다.
+2. curl로 NGROK 다운로드 압축파일을 가져온 후 압축해제 해준다. NGROK 코맨드를 사용하기 위해선 $PATH에 등록된 경로에 NGROK이 있어야 하니 /usr/bin으로 옮겨주기까지 해준다.
 
    ```bash
-   sudo apt install zsh
-   zsh --version # 제대로 깔렸으면 5.x 이상 버전으로 확인된다.
-   chsh -s $(which zsh) # 기본 Shell 설정
-   exec zsh # 기존 세션을 새 세션으로 대체한다
-   echo $SHELL # /bin/zsh라고 비스므래 떠야 정상.
+   cd /tmp
+   curl -o ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+   unzip ngrok.zip # ngrok 파일이 나온다.
+   rm ngrok.zip # 아무리 tmp폴더라도 뭔가 들어있는게 싫다. 깨끗이 제거한다.
+   mv ngrok /usr/bin/ # 그냥 아무대나 옮겨서 해당 폴더 경로 내에서 ngrok을 사용할 수도 있지만.. 개발자는 편리성을 추구한다.
    ```
 
-3. oh my zsh를 깔아주고 테마를 바꿔준다.
-
-   ```zsh
-   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-   vim ~/.zshrc # zsh 설정파일이니 잘 참고하자
-   ```
-   .zshrc 파일 내에 `ZSH_THEME="robbyrussell"`로 되어있는 영역이 있다. robbyrussell 대신 agnoster로 대체하고 `exec zsh` 해준다.
+3. authtoken 설정해주고 그냥 사용하면 된다. 자세한 구현방법은 ngrok 사이트를 참고하자.
