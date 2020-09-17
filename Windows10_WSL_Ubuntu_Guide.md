@@ -53,6 +53,13 @@
 
 10. 기본 WSL 커널 외에 다른 커널을 사용하고 싶은 경우 `wsl -l`로 커널 이름을 찾고, `wsl -d 커널이름`으로 실행해주면 된다.
 
+11. 자, 이제 다 설치됬고 실행도 되고 하니.. 리눅스 창시자 Linus Torvalds신님께 감사 기도문을 드리자.
+
+   ```bash
+   sudo apt update
+   sudo apt upgrade
+   ```
+
 ## ZSH (& Oh My Zsh) 설정
 
 그냥 bash사용하는 것도 괜찮지만 리눅스를 뽀대나게 사용하려면 zsh와 테마/플러그인 관리기능 oh my zsh도 깔아주면 좋다.
@@ -85,34 +92,27 @@
 
 WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이 설치되어 있는 것을 확인할 수 있다 (2020.09.16 기준). 파이썬 가상환경 하나 만들어서 테스트까지 해주자.
 
-1. Ubuntu에 뭔가 설치하기 전에 매번 하듯이, 리눅스 창시자 Linus Torvalds신님께 기도문을 드리자.
-
-   ```bash
-   sudo apt update
-   sudo apt upgrade
-   ```
-
-2. 리눅스에서 파이썬 사용하기 전에 매번 뭔지 뭐르지만 매번 하듯이, 파이썬 창시자 Guido van Rossum신님께도 기도문을 드리자.
+1. 리눅스에서 파이썬 사용하기 전에 매번 뭔지 뭐르지만 매번 하듯이, 파이썬 창시자 Guido van Rossum신님께도 기도문을 드리자.
 
    ```bash
    sudo apt install build-essential checkinstall libffi-dev python-dev
    sudo apt install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
    ```
 
-3. 이제 받을수 있는 축복은 다 받았으니 가상환경 깔아주자. 일단 WSL 환경안에 프로젝트 폴더가 있으면 윈도우 환경에서 찾기 귀찮아지니 윈도우 환경에서 쉽게 접근할 수 있는 경로에 프로젝트 폴더 하나 생성하고 들어가주자.
+2. 이제 받을수 있는 축복은 다 받았으니 가상환경 깔아주자. 일단 WSL 환경안에 프로젝트 폴더가 있으면 윈도우 환경에서 찾기 귀찮아지니 윈도우 환경에서 쉽게 접근할 수 있는 경로에 프로젝트 폴더 하나 생성하고 들어가주자.
 
    ```bash
    cd D:\\Pyject
    ```
 
-4. 파이썬 3버전에서 가상환경 만드는 것은 무조건 venv다. env라는 이름의 가상환경 만들어주고 활성화까지 하자.
+3. 파이썬 3버전에서 가상환경 만드는 것은 무조건 venv다. env라는 이름의 가상환경 만들어주고 활성화까지 하자.
 
    ```bash
    python3 -m venv env
    source env/bin/activate
    ```
 
-5. 가상환경 활성화가 제대로 됬는지 확인한다.
+4. 가상환경 활성화가 제대로 됬는지 확인한다.
 
    ```bash
    which python
