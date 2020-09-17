@@ -102,10 +102,10 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
    sudo apt install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
    ```
 
-2. 이제 받을수 있는 축복은 다 받았으니 가상환경 깔아주자. 일단 WSL 환경안에 프로젝트 폴더가 있으면 윈도우 환경에서 찾기 귀찮아지니 윈도우 환경에서 쉽게 접근할 수 있는 경로에 프로젝트 폴더 하나 생성하고 들어가주자.
+2. 이제 받을수 있는 축복은 다 받았으니 가상환경 깔아주자. 일단 WSL 환경안에 프로젝트 폴더가 있으면 윈도우 환경에서 찾기 귀찮아지니 윈도우 환경에서 쉽게 접근할 수 있는 경로에 프로젝트 폴더 하나 생성하고 들어가주자. 저자는 D 드라이브에 pyjects/pyject_01 폴더를 사용한다.
 
    ```bash
-   cd D:\\Pyject
+   cd /mnt/d/pyjects/pyject_01 # 윈도우 드라이브는 /mnt/드라이브/ 경로로 접속하면 된다.
    ```
 
 3. 파이썬 3버전에서 가상환경 만드는 것은 무조건 venv다. env라는 이름의 가상환경 만들어주고 활성화까지 하자.
