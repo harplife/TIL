@@ -96,4 +96,4 @@
 
 ### Misc
 
-- [윈도우10 WSL 우분투20.04 설치 가이드](<https://github.com/harplife/TIL/blob/master/Windows10_WSL_Ubuntu2004_Guide.md>)
+- [윈도우10 WSL 우분투 가이드](<https://github.com/harplife/TIL/blob/master/Windows10_WSL_Ubuntu_Guide.md>)
