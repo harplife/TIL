@@ -60,8 +60,10 @@
 10. 여기서 동일한 버전의 WSL Ubuntu를 어떻게 여러개 설치할까 고민해본다. 그냥 똑같이 다시 반복하면 되지 않냐~라고 할 수도 있겄지만, 사실 그렇게 간단하지 않은게 WSL Ubuntu의 이름 때문이다. 그렇다, 위와 같이 설치하는 도중에 WSL Ubuntu의 이름을 지정하는 단계가 없다. 정해진 이름이 있고, 아무리 여러개 설치해봤자 이름은 다 같아서, `wsl -l`하면 그냥 뻘짓 했다는게 보인다. wsl로 접속하면 user이름이 다르지 않는 이상 어느 커널에 접속했는지 구분하기 힘들다... 그래서 저자는 무한한 삽질 끝에 닿은 지혜를 밑에 공유한다..!
 
    ```bash
-   wsl --export Ubuntu-20.04 ubuntu2004.tar # 설치됬던 WSL Ubuntu를 .tar파일로 추출한다.
-   wsl --import CustomUbuntu d:\wsl ubuntu2004.tar # 설치할 WSL Ubuntu의 이름을 지정하고, 대상경로를 지정하고, 설치파일 .tar를 지정한다.
+   # 설치됬던 WSL Ubuntu를 .tar파일로 추출한다.
+   wsl --export Ubuntu-20.04 ubuntu2004.tar
+   # 설치할 WSL Ubuntu의 이름을 지정하고, 대상경로를 지정하고, 설치파일 .tar를 지정한다.
+   wsl --import CustomUbuntu d:\wsl\CustomUbuntu ubuntu2004.tar
    ```
 
 11. 기본 WSL 커널 외에 다른 커널에 접속하고 싶은 경우 `wsl -l`로 커널 이름을 찾고, `wsl -d 커널이름`으로 실행해주면 된다.
