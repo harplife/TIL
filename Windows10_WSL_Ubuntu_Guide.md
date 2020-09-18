@@ -36,7 +36,7 @@
 
 5. 실행하면 아주 간단하게 Ubuntu가 열린다. 초기설정으로 아이디/비밀번호 입력이 요구되니 간단히 해준다.
 
-6. 여기서 끝! 하기 보다는 윈도우에 WSL 관리자 기능이 있으니 활용해주자. 밑에 명령어를 사용하면 현재 윈도우에 설치된 WSL 커널 리스트를 뽑을 수 있으며, 기본 (Default) WSL이 어느것으로 지정되어 있는지 확인이 가능하다. 기본 WSL 커널은 코맨드창에서 wsl 명령어를 실행하면 접속되는 WSL 커널이다.
+6. 여기서 끝! 이라기 보다는 윈도우에 WSL 관리자 기능이 있으니 활용해주자. 밑에 명령어를 사용하면 현재 윈도우에 설치된 WSL 커널 리스트를 뽑을 수 있으며, 기본 (Default) WSL이 어느것으로 지정되어 있는지 확인이 가능하다. 기본 WSL 커널은 코맨드창에서 wsl 명령어를 실행하면 접속되는 WSL 커널이다.
 
     ```powershell
     wslconfig /l # Ubuntu 20.04 이름이 Ubuntu-20.04로 나온다.
@@ -69,6 +69,19 @@
 11. 기본 WSL 커널 외에 다른 커널에 접속하고 싶은 경우 `wsl -l`로 커널 이름을 찾고, `wsl -d 커널이름`으로 실행해주면 된다.
 
 12. WSL 커널 삭제하고자 하면 `wslconfig /u 커널이름` 해주면 된다. 물론 파일은 직접 지워주면 끝이다. 여기서 u는 unregister라는 뜻. 
+
+13. import한 WSL Ubuntu는 접속하면 root계정으로 곧바로 들어간다. Export했던 WSl Ubuntu에 초기 접속시 생성된 user는 있되, default 설정까지는 안 되어있다. 저자는 리눅스에 대해 잘 모르지만 일단 삽질한 결과 WSL에서 default user 설정하는 방법이 약간 다르다는것을 느껴 밑에와 같이 진행할 것을 추천한다.
+
+    ```powershell
+    # 윈도우 코맨드창에서 choco 깔아준다. choco는 리눅스 apt과 같은 윈도우 전용 패키지 매니저라 생각하면 된다.
+    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    # choco를 사용해서 LxRunOffline이라는 WSL 유틸리티를 설치해준다.
+    choco install lxrunoffline
+    # default 설정해주려는 우분투 유저의 uid를 찾아야 된다.
+    cat /etc/passwd | grep user01 # 초기 설정시 user01라고 이름 지었었다. user01:x:1000:1000라고 뜨는데, 여기 1000가 uid다.
+    # LxRunOffline을 사용해서 default 유저를 지정해준다.
+    LxRunOffline set-uid -n CustomUbuntu -v 1000
+    ```
 
 ## ZSH (& Oh My Zsh) 설정
 
