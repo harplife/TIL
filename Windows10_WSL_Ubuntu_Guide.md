@@ -164,3 +164,8 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
     ```
 
 3. authtoken 설정해주고 그냥 사용하면 된다. 자세한 구현방법은 ngrok 사이트를 참고하자.
+
+## REFERENCE
+
+- [wsl config 가이드](https://docs.microsoft.com/en-us/windows/wsl/wsl-config)
+- [wsl FAQ](https://docs.microsoft.com/en-us/windows/wsl/faq)
