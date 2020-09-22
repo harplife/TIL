@@ -119,11 +119,19 @@
 
 3. oh my zsh를 깔아주고 테마를 바꿔준다.
 
-    ```zsh
+    ```bash
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     vim ~/.zshrc # zsh 설정파일이니 잘 참고하자
     ```
     .zshrc 파일 내에 `ZSH_THEME="robbyrussell"`로 되어있는 영역이 있다. robbyrussell 대신 agnoster로 대체하고 `exec zsh` 해준다.
+
+4. zsh에는 기본적으로 fish shell과 같은 autosuggestion 기능은 없지만, plugin 설치해서 무난하게 사용할 수 있다.
+
+    ```bash
+    # 플러그인 설치
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    ```
+    zsh 설정파일 내에 plugins 부분 수정(`vim ~/.zshrc`) => `plugins=(zsh-autosuggestions)`
 
 ## 파이썬 기본 설정
 
