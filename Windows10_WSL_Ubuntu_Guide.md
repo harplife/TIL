@@ -1,10 +1,16 @@
-# Windows 10 WSL Ubuntu 가이드라인
+# Windows 10 WSL2 Ubuntu 가이드라인
 
 ## 개요
 
 - Microsoft Store를 통해서 Ubuntu를 설치하는 경우 Ubuntu 설치 경로는 시스템 드라이브 (C)로 묶이며 변경이 *거의* 불가능하다. WSL Ubuntu이미지를 import해서 export하는 방안도 있긴 하나, 굳이 그렇게 까지 해야될까?
 - Docker를 통해서 Ubuntu를 설치하는 경우 Ubuntu 이미지/콘테이너 설치 경로는 시스템 드라이브 (C)로 묶이며 이것도 또한 변경이 불가능하다. Stackoverflow 조차도 포기한 토픽이니 더한 삽질을 하지 말자. 물론 volume 또는 bind mount등의 솔루션이 있다고 하지만 이건 결국 Share 폴더 하나 만드는 작업으로, 시스템 구성 파일들은 결국 시스템 드라이브에 쌓인다.
 - 저자는 시스템 드라이브 파티션 사이즈를 유난히 작게 해놔서 위에 조건들이 부적절함으로, 이를 극복하는 방안을 제시한다.
+
+## 간단한 용어 정의
+
+1. WSL -> Windows Subsystem for Linux
+2. WSL 커널 -> WSL 자체 코어를 뜻한다.
+3. WSL 배포 -> WSL 커널에 장착되는 OS Distro를 뜻한다.
 
 ## 설치 방법
 
@@ -36,7 +42,7 @@
 
 5. 실행하면 아주 간단하게 Ubuntu가 열린다. 초기설정으로 아이디/비밀번호 입력이 요구되니 간단히 해준다.
 
-6. 여기서 끝! 이라기 보다는 윈도우에 WSL 관리자 기능이 있으니 활용해주자. 밑에 명령어를 사용하면 현재 윈도우에 설치된 WSL 커널 리스트를 뽑을 수 있으며, 기본 (Default) WSL이 어느것으로 지정되어 있는지 확인이 가능하다. 기본 WSL 커널은 코맨드창에서 wsl 명령어를 실행하면 접속되는 WSL 커널이다.
+6. 여기서 끝! 이라기 보다는 윈도우에 WSL 관리자 기능이 있으니 활용해주자. 밑에 명령어를 사용하면 현재 윈도우에 설치된 WSL 배포 리스트를 뽑을 수 있으며, 기본 (Default) WSL이 어느것으로 지정되어 있는지 확인이 가능하다. 기본 WSL 베포는 코맨드창에서 wsl 명령어를 실행하면 접속되는 WSL 배포이다.
 
     ```powershell
     wslconfig /l # Ubuntu 20.04 이름이 Ubuntu-20.04로 나온다.
@@ -56,7 +62,7 @@
     sudo sh -c 'apt update && apt upgrade'
     ```
 
-10. 여기서 동일한 버전의 WSL Ubuntu를 어떻게 여러개 설치할까 고민해본다. 그냥 똑같이 다시 반복하면 되지 않냐~라고 할 수도 있겄지만, 사실 그렇게 간단하지 않은게 WSL Ubuntu의 이름 때문이다. 그렇다, 위와 같이 설치하는 도중에 WSL Ubuntu의 이름을 지정하는 단계가 없다. 정해진 이름이 있고, 아무리 여러개 설치해봤자 이름은 다 같아서, `wsl -l`하면 그냥 뻘짓 했다는게 보인다. wsl로 접속하면 user이름이 다르지 않는 이상 어느 커널에 접속했는지 구분하기 힘들다... 그래서 저자는 무한한 삽질 끝에 닿은 지혜를 밑에 공유한다..!
+10. 여기서 동일한 버전의 WSL Ubuntu를 어떻게 여러개 설치할까 고민해본다. 그냥 똑같이 다시 반복하면 되지 않냐~라고 할 수도 있겄지만, 사실 그렇게 간단하지 않은게 WSL Ubuntu의 이름 때문이다. 그렇다, 위와 같이 설치하는 도중에 WSL Ubuntu의 이름을 지정하는 단계가 없다. 정해진 이름이 있고, 아무리 여러개 설치해봤자 이름은 다 같아서, `wsl -l`하면 그냥 뻘짓 했다는게 보인다. wsl로 접속하면 user이름이 다르지 않는 이상 어느 배포에 접속했는지 구분하기 힘들다... 그래서 저자는 무한한 삽질 끝에 닿은 지혜를 밑에 공유한다..!
 
     ```bash
     # 설치됬던 WSL Ubuntu를 .tar파일로 추출한다.
@@ -65,9 +71,9 @@
     wsl --import CustomUbuntu d:\wsl\CustomUbuntu ubuntu2004.tar
     ```
 
-11. 기본 WSL 커널 외에 다른 커널에 접속하고 싶은 경우 `wsl -l`로 커널 이름을 찾고, `wsl -d 커널이름`으로 실행해주면 된다.
+11. 기본 WSL 배포 외에 다른 배포에 접속하고 싶은 경우 `wsl -l`로 배포 목록을 보고, `wsl -d 배포이름`으로 실행해주면 된다.
 
-12. WSL 커널 삭제하고자 하면 `wslconfig /u 커널이름` 해주면 된다. 물론 파일은 직접 지워주면 끝이다. 여기서 u는 unregister라는 뜻. 
+12. WSL 배포 삭제하고자 하면 `wslconfig /u 배포이름` 해주면 된다. 물론 파일은 직접 따로 지워주면 끝이다. 여기서 u는 unregister라는 뜻. 
 
 13. import한 WSL Ubuntu는 접속하면 root계정으로 곧바로 들어간다. Export했던 WSl Ubuntu에 초기 접속시 생성된 user는 있되, default 설정까지는 안 되어있다. 저자는 리눅스에 대해 잘 모르지만 일단 삽질한 결과 WSL에서 default user 설정하는 방법이 약간 다르다는것을 느껴 밑에와 같이 진행할 것을 추천한다.
 
@@ -81,6 +87,14 @@
     # LxRunOffline을 사용해서 default 유저를 지정해준다.
     LxRunOffline set-uid -n CustomUbuntu -v 1000
     ```
+
+## WSL2 GPU 설정 (진행중)
+
+1. 경고: 2020.09.22 기준으로 현재 Windows 10 Home/Pro Stable 버전에서는 지원되지 않는다. Windows Insider Preview (한마디로 윈도우 Edge 개발 버전)으로 업데이트 되어야 한다.
+2. 경고: 2020.09.22 기준으로 현재 Windows 10 Insider Preview 업데이트 KB4571756 자체에 버그가 있어 WSL2 기능을 못 사용하게 되며, Docker 또한 못 사용하게 된다.
+    - ref: [버그에 관한 Article](https://www.windowslatest.com/2020/09/09/windows-10-wsl-element-not-found-error/)
+    - ref: [관련 깃헙 이슈](https://github.com/microsoft/WSL/issues/5880)
+3. 적어도 위에 문제만 아니라면 [Microsoft 문서](https://docs.microsoft.com/en-us/windows/win32/direct3d12/gpu-cuda-in-wsl)와 같이 그냥 따라하면 될듯하다..
 
 ## ZSH (& Oh My Zsh) 설정
 
