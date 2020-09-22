@@ -231,7 +231,6 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
       "name": "John Doe"
     }
     '
-    
     # 방근 넣은 데이터 1개 확인하기.
     curl -X GET "localhost:9200/customer/_doc/1?pretty"
     ```
@@ -242,7 +241,6 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
     # accounts.json 파일이 있는 경로로 먼저 가고.
     # bank라는 인덱스에 데이터를 집어 넣는다.
     curl -H "Content-Type: application/json" -XPOST "localhost:9200/bank/_bulk?pretty&refresh" --data-binary "@accounts.json"
-    
     # 넣은 데이터 확인하기.
     curl -X GET "localhost:9200/bank/_doc/1?pretty"
     ```
