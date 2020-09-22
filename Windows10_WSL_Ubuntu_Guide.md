@@ -214,15 +214,7 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
     }
     ```
 
-3. (Optional) WSL 시작시 ElasticSearch 실행하는 옵션 설정
-
-    ```bash
-    sudo update-rc.d elasticsearch defaults 95 10 # <-- 사실 이 명령어만 필요함. 밑에는 덤.
-    sudo -i service elasticsearch stop # elasticsearch 멈치는 명령어
-    sudo -i service elasticsearch start # elasticsearch 실행하는 명령어
-    ```
-
-4a. 데이터 입력 및 호출 : 한 줄 씩 추가
+3. 데이터 입력 및 호출 : 한 줄 씩 추가
 
     ```bash
     # customer라는 인덱스가 자동으로 생성되며, 인덱스 1의 필드 'name'에 값이 추가된다.
@@ -235,7 +227,7 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
     curl -X GET "localhost:9200/customer/_doc/1?pretty"
     ```
 
-4b. 데이터 입력 및 호출 : JSON 파일 추가 (예: [accounts.json](https://github.com/elastic/elasticsearch/blob/master/docs/src/test/resources/accounts.json?raw=true))
+4. 데이터 입력 및 호출 : JSON 파일 추가 (예: [accounts.json](https://github.com/elastic/elasticsearch/blob/master/docs/src/test/resources/accounts.json?raw=true))
 
     ```bash
     # accounts.json 파일이 있는 경로로 먼저 가고.
@@ -244,6 +236,9 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
     # 넣은 데이터 확인하기.
     curl -X GET "localhost:9200/bank/_doc/1?pretty"
     ```
+
+참고:
+- 시작시 프로그램 실행은 WSL에서는 안 되는 듯 하다.
 
 ## REFERENCE
 
