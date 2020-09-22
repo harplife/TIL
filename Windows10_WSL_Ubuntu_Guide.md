@@ -5,14 +5,15 @@
 - Microsoft Store를 통해서 Ubuntu를 설치하는 경우 Ubuntu 설치 경로는 시스템 드라이브 (C)로 묶이며 변경이 *거의* 불가능하다. WSL Ubuntu이미지를 import해서 export하는 방안도 있긴 하나, 굳이 그렇게 까지 해야될까?
 - Docker를 통해서 Ubuntu를 설치하는 경우 Ubuntu 이미지/콘테이너 설치 경로는 시스템 드라이브 (C)로 묶이며 이것도 또한 변경이 불가능하다. Stackoverflow 조차도 포기한 토픽이니 더한 삽질을 하지 말자. 물론 volume 또는 bind mount등의 솔루션이 있다고 하지만 이건 결국 Share 폴더 하나 만드는 작업으로, 시스템 구성 파일들은 결국 시스템 드라이브에 쌓인다.
 - 저자는 시스템 드라이브 파티션 사이즈를 유난히 작게 해놔서 위에 조건들이 부적절함으로, 이를 극복하는 방안을 제시한다.
+- 현재 기준 2020.09.22 으로 이후에 변경될 수 있다는 점 참고!
 
 ## 간단한 용어 정의
 
-1. WSL -> Windows Subsystem for Linux
+1. WSL -> Windows Subsystem for Linux의 약자이며, Windows 파일시스템에 접근이 가능한 리눅스 커널이라 보면 된다.
 2. WSL 커널 -> WSL 자체 코어를 뜻한다.
 3. WSL 배포 -> WSL 커널에 장착되는 OS Distro를 뜻한다.
 
-## 설치 방법
+## WSL2 Ubuntu 설치 및 
 
 1. WSL Ubuntu 이미지를 설치할 경로를 선택한다. 예를 들어, D:\\WSL 폴더를 선택한다.
 
@@ -177,6 +178,74 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
     ```
 
 3. authtoken 설정해주고 그냥 사용하면 된다. 자세한 구현방법은 ngrok 사이트를 참고하자.
+
+## ElasticSearch 설치 및 구동
+
+언제나 자세한 사항은 [Official Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html)을 보는 것이지만, 일단 밑에 되는것/핵심만 정리한다.
+
+1. 밑에 명령들 그냥 복붗하면 설치 완료. 간단히 설명하자면 elasticsearch가 들어있는 apt repository를 먼저 등록해서 거기를 통해 설치파일 가져온다는 것.
+
+    ```bash
+    wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+    sudo apt install apt-transport-https
+    echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+    sudo apt update && sudo apt install elasticsearch
+    ```
+
+2. [로컬 9200포트](http://localhost:9200/)에 접속해서 elasticseach가 제대로 돌아가는지 확인. 대강 밑에와 같이 나온다.
+
+    ```json
+    {
+      "name" : "ZION-AI",
+      "cluster_name" : "elasticsearch",
+      "cluster_uuid" : "4n4VZbgYQNKDf_h7EaqCdw",
+      "version" : {
+        "number" : "7.9.1",
+        "build_flavor" : "default",
+        "build_type" : "deb",
+        "build_hash" : "083627f112ba94dffc1232e8b42b73492789ef91",
+        "build_date" : "2020-09-01T21:22:21.964974Z",
+        "build_snapshot" : false,
+        "lucene_version" : "8.6.2",
+        "minimum_wire_compatibility_version" : "6.8.0",
+        "minimum_index_compatibility_version" : "6.0.0-beta1"
+      },
+      "tagline" : "You Know, for Search"
+    }
+    ```
+
+3. (Optional) WSL 시작시 ElasticSearch 실행하는 옵션 설정
+
+    ```bash
+    sudo update-rc.d elasticsearch defaults 95 10 # <-- 사실 이 명령어만 필요함. 밑에는 덤.
+    sudo -i service elasticsearch stop # elasticsearch 멈치는 명령어
+    sudo -i service elasticsearch start # elasticsearch 실행하는 명령어
+    ```
+
+4a. 데이터 입력 및 호출 : 한 줄 씩 추가
+
+    ```bash
+    # customer라는 인덱스가 자동으로 생성되며, 인덱스 1의 필드 'name'에 값이 추가된다.
+    curl -X PUT "localhost:9200/customer/_doc/1?pretty" -H 'Content-Type: application/json' -d'
+    {
+      "name": "John Doe"
+    }
+    '
+
+    # 방근 넣은 데이터 1개 확인하기.
+    curl -X GET "localhost:9200/customer/_doc/1?pretty"
+    ```
+
+4b. 데이터 입력 및 호출 : JSON 파일 추가 (예: [accounts.json](https://github.com/elastic/elasticsearch/blob/master/docs/src/test/resources/accounts.json?raw=true))
+
+    ```bash
+    # accounts.json 파일이 있는 경로로 먼저 가고.
+    # bank라는 인덱스에 데이터를 집어 넣는다.
+    curl -H "Content-Type: application/json" -XPOST "localhost:9200/bank/_bulk?pretty&refresh" --data-binary "@accounts.json"
+    
+    # 넣은 데이터 확인하기.
+    curl -X GET "localhost:9200/bank/_doc/1?pretty"
+    ```
 
 ## REFERENCE
 
