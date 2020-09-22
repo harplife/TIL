@@ -231,7 +231,7 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
       "name": "John Doe"
     }
     '
-
+    
     # 방근 넣은 데이터 1개 확인하기.
     curl -X GET "localhost:9200/customer/_doc/1?pretty"
     ```
