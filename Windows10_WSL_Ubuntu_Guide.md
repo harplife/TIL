@@ -222,7 +222,9 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
     }
     ```
 
-3. 데이터 입력 및 호출 : 한 줄 씩 추가
+3. WSL 리붓하면 elasticsearch는 죽고 다시 시작하지 않는다.. 원래 리눅스에 startup script 로딩하는 방법이 따로 있긴 하지만, 일단 간단히 테스트한 결과 WSL에서는 잘 안되는 것 같다. 그렇기 때문에, WSL startup이 아닌, Shell(ZSH) startup script에 elasticsearch 시작 명령어를 박아넣어야 한다. `vim ~/.zshrc` 해주고, `sudo -i service elasticsearch start` 추가해주자. 이미 elasticsearch가 실행되고 있는 경우 탈이 생기는게 아니니 이 평법은 무난하다.
+
+4. 데이터 입력 및 호출 : 한 줄 씩 추가
 
     ```bash
     # customer라는 인덱스가 자동으로 생성되며, 인덱스 1의 필드 'name'에 값이 추가된다.
@@ -235,7 +237,7 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
     curl -X GET "localhost:9200/customer/_doc/1?pretty"
     ```
 
-4. 데이터 입력 및 호출 : JSON 파일 추가 (예: [accounts.json](https://github.com/elastic/elasticsearch/blob/master/docs/src/test/resources/accounts.json?raw=true))
+5. 데이터 입력 및 호출 : JSON 파일 추가 (예: [accounts.json](https://github.com/elastic/elasticsearch/blob/master/docs/src/test/resources/accounts.json?raw=true))
 
     ```bash
     # accounts.json 파일이 있는 경로로 먼저 가고.
