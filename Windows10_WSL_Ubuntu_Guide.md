@@ -247,9 +247,6 @@ WSL Ubuntu 20.04에 `which python3` 해주면 기본적으로 python3.8버전이
     curl -X GET "localhost:9200/bank/_doc/1?pretty"
     ```
 
-참고:
-- 시작시 프로그램 실행은 WSL에서는 안 되는 듯 하다.
-
 ## REFERENCE
 
 - [wsl config 가이드](https://docs.microsoft.com/en-us/windows/wsl/wsl-config)
