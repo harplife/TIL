@@ -13,6 +13,15 @@
 2. WSL 커널 -> WSL 자체 코어를 뜻한다.
 3. WSL 배포 -> WSL 커널에 장착되는 OS Distro를 뜻한다.
 
+## 잠깐만! 혼자 가기는 너무 위험하단다! 이걸 가져가렴.
+
+1. 버전이 높다고 무조건 좋은게 아니다. WSL도 마찬가지로 1과 2버전이 있지만 2버전이 1버전보다 떨어지는 치명적인 약점이 하나 있다.. 이 사항은 프로젝트 개발에 많은 영향을 끼치니 아주 잘 기억해둬야 하는 사항이다! 그게 무엇인가 하면은 바로 Windows File System 활용 속도이다. WSL2는 분명 WSL1 보다는 빠르지만 Linux File System 안에서만 훨씬 빠른거지 Windows File System 내에서는 훨씬 뒤쳐진다는 것이다 (이게 바로 유리대포라는 것일까). 이 사항에 대해서는 Microsoft사가 공개적으로 [발표](https://docs.microsoft.com/en-us/windows/wsl/compare-versions#exceptions-for-using-wsl-1-rather-than-wsl-2)했으며.. 이런거는 문제가 되지 않다고 주장하는 이유가 바로 VS Code로 원격 프로젝트 개발이 가능하다는 점. `wsl --set-version`으로 WSL 배포의 WSL 커널 버전을 바꿀수 있다고 하니 참고해둘것.
+    - 참고로 저자는 WSL2로 Windows File System 상에 Angular 프로젝트 개발을 진행하려다 `ng serve`가 너무 느려 원인을 파악하려다 위 사항을 알게됬다. Stackoverflow 말로는 WSL2에 Windows File System 활용 속도가 너무 느리기에 `ng serve`의 compiling 속도가 느려지는 것이라고 하니 이해가 된다.
+
+2. WSL2에선 GPU 연동이 된다는 소식이 있다. 사실 이것은 Windows 체험판 (Insider Preview) 개발자 채널 버전에서만 가능하고, 최신 업데이트가 WSL과 Docker를 못 쓰게 만드는 버그가 있어 지금 당장은 불가능하다.
+
+3. 리눅스에서 되는 모든게 WSL 리눅스 배포에도 무조건 될거라는 기대는 버리자. 스택신님께 문의를 드릴때 이런 구분이 중요하니 참고할 것.
+
 ## WSL2 Ubuntu 설치 및 
 
 1. WSL Ubuntu 이미지를 설치할 경로를 선택한다. 예를 들어, D:\\WSL 폴더를 선택한다.
