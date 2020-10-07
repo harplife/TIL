@@ -58,6 +58,7 @@
 
 ### Python
 
+- [Windows 로그인 사진들 가져오기](https://github.com/harplife/TIL/blob/master/Python/copy_assets.py) - posted: 2020-10-07
 - Pyaudio 패키지 활용
   - [Chords and Scales (Mono)](<https://github.com/harplife/TIL/blob/master/Python/pyaudio_01.ipynb>)
   - [Binaural Audio (Stereo)](<https://github.com/harplife/TIL/blob/master/Python/pyaudio_02.ipynb>)
