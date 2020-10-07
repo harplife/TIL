@@ -97,3 +97,4 @@
 ### Misc
 
 - [윈도우10 WSL 우분투 가이드](<https://github.com/harplife/TIL/blob/master/Windows10_WSL_Ubuntu_Guide.md>)
+- [FastAPI + ElasticSearch](<https://github.com/harplife/TIL/blob/master/Flask_ElasticSearch_Guide.md>)
