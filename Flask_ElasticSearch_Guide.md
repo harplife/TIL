@@ -370,9 +370,9 @@ ElasticSearch 창시자 Shay Banon이 말하기를, elasticsearch를 제대로 �
 
 
 
-## 파이썬 데이터 조작 : Request 패키지 활용
+## 파이썬 데이터 조작 : Requests 패키지 활용
 
-
+밑에 예시 코드는 [여기](https://github.com/harplife/TIL/blob/master/Python/requests_es.py)에 있으니 직접 실행해볼 수 있음.
 
 ### 인덱스 CRUD
 
