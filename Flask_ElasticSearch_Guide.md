@@ -348,25 +348,25 @@ ElasticSearch 창시자 Shay Banon이 말하기를, elasticsearch를 제대로 �
 
 1. update API를 활용한다. create API와 혼동되지 않게 조심해야 한다.
 
-   ```bash
-   # 94번 문서를 업데이트 한다.
-   curl -X POST "localhost:9200/bank/_update/94" -H 'Content-Type: application/json' -d '
-   {
-     "doc" : {
-       "lastname": "jerry",
-       "employer": "benny"
-       }
-   }
-   '
-   ```
+    ```bash
+    # 94번 문서를 업데이트 한다.
+    curl -X POST "localhost:9200/bank/_update/94" -H 'Content-Type: application/json' -d '
+    {
+      "doc" : {
+        "lastname": "jerry",
+        "employer": "benny"
+        }
+    }
+    '
+    ```
 
 #### Delete document
 
 1. 아주 간단하게 문서를 지운다.
 
-   ```bash
-   curl -X DELETE "localhost:9200/bank/_doc/94"
-   ```
+    ```bash
+    curl -X DELETE "localhost:9200/bank/_doc/94"
+    ```
 
 
 
@@ -380,153 +380,153 @@ ElasticSearch 창시자 Shay Banon이 말하기를, elasticsearch를 제대로 �
 
 1. 인덱스 유무 확인 - [링크](http://localhost:5002/index/exist/bank)
 
-   ```python
-   @app.get('/index/exist/{index}')
-   def index_exist(
-       index: str
-       ):
-       '''
-       curl -I "localhost:9200/bank?pretty=true"
-       '''
-   
-       params = {'pretty': 'true'}
-       req_url = es_addr + '/' + index
-   
-       resp = requests.head(req_url, params=params)
-   
-       print('HTTP code:', resp.status_code, '-- response:', resp)
-   
-       result = {'index': index}
-   
-       if resp.status_code == 200:
-           result['exists'] = True
-           return result
-       elif resp.status_code == 404:
-           result['exists'] = False
-           return result
-       else:
-           raise Exception(f'UNKNOWN STATUS CODE: {resp.status_code}')
-   ```
+    ```python
+    @app.get('/index/exist/{index}')
+    def index_exist(
+        index: str
+        ):
+        '''
+        curl -I "localhost:9200/bank?pretty=true"
+        '''
+    
+        params = {'pretty': 'true'}
+        req_url = es_addr + '/' + index
+    
+        resp = requests.head(req_url, params=params)
+    
+        print('HTTP code:', resp.status_code, '-- response:', resp)
+    
+        result = {'index': index}
+    
+        if resp.status_code == 200:
+            result['exists'] = True
+            return result
+        elif resp.status_code == 404:
+            result['exists'] = False
+            return result
+        else:
+            raise Exception(f'UNKNOWN STATUS CODE: {resp.status_code}')
+    ```
 
 2. 인덱스 생성 - [링크](http://localhost:5002/index/create/bank)
 
-   ```python
-   @app.get('/index/create/{index}')
-   def index_create(
-       index: str
-       ):
-       '''
-       curl -X PUT "localhost:9200/bank?pretty"
-       '''
-   
-       params = {'pretty': 'true'}
-       req_url = es_addr + '/' + index
-   
-       resp = requests.put(req_url, params=params)
-   
-       print('HTTP code:', resp.status_code, '-- response:', resp)
-   
-       resp_json = json.loads(resp.text)
-   
-       return resp_json
-   ```
+    ```python
+    @app.get('/index/create/{index}')
+    def index_create(
+        index: str
+        ):
+        '''
+        curl -X PUT "localhost:9200/bank?pretty"
+        '''
+    
+        params = {'pretty': 'true'}
+        req_url = es_addr + '/' + index
+    
+        resp = requests.put(req_url, params=params)
+    
+        print('HTTP code:', resp.status_code, '-- response:', resp)
+    
+        resp_json = json.loads(resp.text)
+    
+        return resp_json
+    ```
 
 #### Read index
 
 1. 인덱스 정보 호출 - [링크](http://localhost:5002/index/read/bank)
 
-   ```python
-   @app.get('/index/read/{index}')
-   def index_read(
-       index: str
-       ):
-       '''
-       curl -X GET "localhost:9200/bank?pretty"
-       '''
-   
-       params = {'pretty': 'true'}
-       req_url = es_addr + '/' + index
-   
-       resp = requests.get(req_url, params=params)
-   
-       print('HTTP code:', resp.status_code, '-- response:', resp)
-   
-       resp_json = json.loads(resp.text)
-   
-       return resp_json
-   ```
+    ```python
+    @app.get('/index/read/{index}')
+    def index_read(
+        index: str
+        ):
+        '''
+        curl -X GET "localhost:9200/bank?pretty"
+        '''
+    
+        params = {'pretty': 'true'}
+        req_url = es_addr + '/' + index
+    
+        resp = requests.get(req_url, params=params)
+    
+        print('HTTP code:', resp.status_code, '-- response:', resp)
+    
+        resp_json = json.loads(resp.text)
+    
+        return resp_json
+    ```
 
 #### Update index
 
 1. 가명 생성 - [링크](http://localhost:5002/bank/alias/create/gentlemen?key=gender&value=M)
 
-   ```python
-   @app.get('/{index}/alias/create/{alias}')
-   def alias_create(
-       index: str,
-       name: str,
-       key: str = None,  # key/value pair for filter
-       value: str = None
-       ):
-       '''
-       curl -X PUT "localhost:9200/bank/_alias/gentlemen?pretty" -H 'Content-Type: application/json' -d'
-       {
-           "filter" : {
-               "term" : {
-                   "gender.keyword" : "M"
-               }
-           }
-       }
-       '
-       '''
-   
-       params = {'pretty': 'true'}
-       req_url = es_addr + '/' + index + '/_alias/' + alias
-   
-       if key is None:
-           resp = requests.put(req_url, params=params)
-       else:
-           req_body = {
-               'filter': {
-                   'term': {
-                       f'{key}.keyword': value
-                   }
-               }
-           }
-   
-           resp = requests.put(req_url, params=params, json=req_body, headers={'Content-Type': 'application/json'})
-   
-       print('HTTP code:', resp.status_code, '-- response:', resp)
-   
-       resp_json = json.loads(resp.text)
-   
-       return resp_json
-   ```
+    ```python
+    @app.get('/{index}/alias/create/{alias}')
+    def alias_create(
+        index: str,
+        name: str,
+        key: str = None,  # key/value pair for filter
+        value: str = None
+        ):
+        '''
+        curl -X PUT "localhost:9200/bank/_alias/gentlemen?pretty" -H 'Content-Type: application/json' -d'
+        {
+            "filter" : {
+                "term" : {
+                    "gender.keyword" : "M"
+                }
+            }
+        }
+        '
+        '''
+    
+        params = {'pretty': 'true'}
+        req_url = es_addr + '/' + index + '/_alias/' + alias
+    
+        if key is None:
+            resp = requests.put(req_url, params=params)
+        else:
+            req_body = {
+                'filter': {
+                    'term': {
+                        f'{key}.keyword': value
+                    }
+                }
+            }
+    
+            resp = requests.put(req_url, params=params, json=req_body, headers={'Content-Type': 'application/json'})
+    
+        print('HTTP code:', resp.status_code, '-- response:', resp)
+    
+        resp_json = json.loads(resp.text)
+    
+        return resp_json
+    ```
 
 #### Delete index
 
 1. 인덱스 삭제  - [링크](http://localhost:5002/index/delete/bank)
 
-   ```python
-   @app.get('/index/delete/{index}')
-   def index_delete(
-       index: str
-       ):
-       '''
-       curl -X DELETE "localhost:9200/bank?pretty"
-       '''
-   
-       params = {'pretty': 'true'}
-       req_url = es_addr + '/' + index
-   
-       resp = requests.delete(req_url, params=params)
-   
-       print('HTTP code:', resp.status_code, '-- response:', resp)
-   
-       resp_json = json.loads(resp.text)
-   
-       return resp_json
-   ```
+    ```python
+    @app.get('/index/delete/{index}')
+    def index_delete(
+        index: str
+        ):
+        '''
+        curl -X DELETE "localhost:9200/bank?pretty"
+        '''
+    
+        params = {'pretty': 'true'}
+        req_url = es_addr + '/' + index
+    
+        resp = requests.delete(req_url, params=params)
+    
+        print('HTTP code:', resp.status_code, '-- response:', resp)
+    
+        resp_json = json.loads(resp.text)
+    
+        return resp_json
+    ```
 
 ### 문서 CRUD
 
@@ -534,41 +534,41 @@ ElasticSearch 창시자 Shay Banon이 말하기를, elasticsearch를 제대로 �
 
 1. 문서 생성 - [링크](http://localhost:5002/customers/document/create?gender=M&firstname=John)
 
-   ```python
-   @app.get('/{index}/document/create')
-   def document_create(
-       index: str,
-       request: Request,
-       did: str = None,
-       ):
-       '''
-       curl -X POST "localhost:9200/bank/_doc/?pretty" -H 'Content-Type: application/json' -d '
-       {
-           "firstname": "kimchy",
-           "lastname": "kang",
-           "gender": "M"
-       }
-       '
-       '''
-   
-       params = {'pretty': 'true'}
-   
-       req_body = request.query_params._dict
-   
-       if did:
-           req_url = es_addr + '/' + index + '/_doc/' + req_body['did']
-           del req_body['did']
-       else:
-           req_url = es_addr + '/' + index + '/_doc/'
-   
-       resp = requests.post(req_url, params=params, json=req_body, headers={'Content-Type': 'application/json'})
-   
-       print('HTTP code:', resp.status_code, '-- response:', resp)
-   
-       resp_json = json.loads(resp.text)
-   
-       return resp_json
-   ```
+    ```python
+    @app.get('/{index}/document/create')
+    def document_create(
+        index: str,
+        request: Request,
+        did: str = None,
+        ):
+        '''
+        curl -X POST "localhost:9200/bank/_doc/?pretty" -H 'Content-Type: application/json' -d '
+        {
+            "firstname": "kimchy",
+            "lastname": "kang",
+            "gender": "M"
+        }
+        '
+        '''
+    
+        params = {'pretty': 'true'}
+    
+        req_body = request.query_params._dict
+    
+        if did:
+            req_url = es_addr + '/' + index + '/_doc/' + req_body['did']
+            del req_body['did']
+        else:
+            req_url = es_addr + '/' + index + '/_doc/'
+    
+        resp = requests.post(req_url, params=params, json=req_body, headers={'Content-Type': 'application/json'})
+    
+        print('HTTP code:', resp.status_code, '-- response:', resp)
+    
+        resp_json = json.loads(resp.text)
+    
+        return resp_json
+    ```
 
 2. Bulk insert는 일단 생략! 이건 html로 파일을 업로드 
 
@@ -576,159 +576,163 @@ ElasticSearch 창시자 Shay Banon이 말하기를, elasticsearch를 제대로 �
 
 1. 문서 번호로 문서 조회 - [링크](http://localhost:5002/customers/document/read/8sotAXUBL5jx-Q-4ifQ0)
 
-   ```python
-   @app.get('/{index}/document/read/{did}')
-   def document_read(
-       index: str,
-       did: str
-       ):
-       '''
-       curl -X GET "localhost:9200/customers/_doc/8sotAXUBL5jx-Q-4ifQ0"
-       '''
-   
-       params = {'pretty': 'true'}
-       req_url = es_addr + '/' + index + '/_doc/' + did
-   
-       resp = requests.get(req_url, params=params)
-   
-       print('HTTP code:', resp.status_code, '-- response:', resp)
-   
-       resp_json = json.loads(resp.text)
-   
-       return resp_json
-   ```
+    ```python
+    @app.get('/{index}/document/read/{did}')
+    def document_read(
+        index: str,
+        did: str
+        ):
+        '''
+        curl -X GET "localhost:9200/customers/_doc/8sotAXUBL5jx-Q-4ifQ0"
+        '''
+    
+        params = {'pretty': 'true'}
+        req_url = es_addr + '/' + index + '/_doc/' + did
+    
+        resp = requests.get(req_url, params=params)
+    
+        print('HTTP code:', resp.status_code, '-- response:', resp)
+    
+        resp_json = json.loads(resp.text)
+    
+        return resp_json
+    ```
 
 2. 인덱스 내 여러 문서 조회 - [링크](http://localhost:5002/customers/document/scan)
 
-   ```python
-   @app.get('/{index}/document/scan')
-   def document_scan(
-       index: str,
-       size: int = 20
-       ):
-       '''
-       curl -X GET 'localhost:9200/customers/_search?size=20' -d '
-       {
-           "query":{"match_all":{}}
-       }
-       ' -H 'Content-type: application/json'
-       '''
-       params = {'pretty': 'true', 'size': size}
-       req_url = es_addr + '/' + index + '/_search'
-       req_body = {
-           'query': {
-               'match_all': {}
-           }
-       }
-       headers = {'Content-Type': 'application/json'}
-   
-       resp = requests.get(req_url, params=params, headers=headers, json=req_body)
-   
-       print('HTTP code:', resp.status_code, '-- response:', resp)
-   
-       resp_json = json.loads(resp.text)
-   
-       return resp_json
-   ```
+    ```python
+    @app.get('/{index}/document/scan')
+    def document_scan(
+        index: str,
+        size: int = 20
+        ):
+        '''
+        curl -X GET 'localhost:9200/customers/_search?size=20' -d '
+        {
+            "query":{"match_all":{}}
+        }
+        ' -H 'Content-type: application/json'
+        '''
+        params = {'pretty': 'true', 'size': size}
+        req_url = es_addr + '/' + index + '/_search'
+        req_body = {
+            'query': {
+                'match_all': {}
+            }
+        }
+        headers = {'Content-Type': 'application/json'}
+    
+        resp = requests.get(req_url, params=params, headers=headers, json=req_body)
+    
+        print('HTTP code:', resp.status_code, '-- response:', resp)
+    
+        resp_json = json.loads(resp.text)
+    
+        return resp_json
+    ```
 
 3. 인덱스 내 키워드로 문서 검색 - [링크](http://localhost:5002/bank/document/search?keyword=M&field=gender)
 
-   ```python
-   @app.get('/{index}/document/search')
-   def document_search(
-       index: str,
-       keyword: str,
-       field: str = None,
-       size: int = 20
-       ):
-       '''
-       curl -X GET 'localhost:9200/bank/_search?q=duke'
-       또는
-       curl -X GET 'localhost:9200/bank/_search?q=gender:M'
-       '''
-       params = {
-           'pretty': 'true',
-           'size': size
-           }
-       if field is not None:
-           params['q'] = field + ':' + keyword
-       else:
-           params['q'] = keyword
-       req_url = es_addr + '/' + index + '/_search'
-   
-       resp = requests.get(req_url, params=params)
-   
-       print('HTTP code:', resp.status_code, '-- response:', resp)
-   
-       resp_json = json.loads(resp.text)
-   
-       return resp_json
-   ```
+    ```python
+    @app.get('/{index}/document/search')
+    def document_search(
+        index: str,
+        keyword: str,
+        field: str = None,
+        size: int = 20
+        ):
+        '''
+        curl -X GET 'localhost:9200/bank/_search?q=duke'
+        또는
+        curl -X GET 'localhost:9200/bank/_search?q=gender:M'
+        '''
+        params = {
+            'pretty': 'true',
+            'size': size
+            }
+        if field is not None:
+            params['q'] = field + ':' + keyword
+        else:
+            params['q'] = keyword
+        req_url = es_addr + '/' + index + '/_search'
+    
+        resp = requests.get(req_url, params=params)
+    
+        print('HTTP code:', resp.status_code, '-- response:', resp)
+    
+        resp_json = json.loads(resp.text)
+    
+        return resp_json
+    ```
 
 #### Update document
 
 1. 문서 업데이트 - [링크](http://localhost:5002/bank/document/update/94?lastname=jerry&employer=benny)
 
-   ```python
-   @app.get('/{index}/document/update/{did}')
-   def document_update(
-       index: str,
-       did: str,
-       request: Request
-       ):
-       '''
-       curl -X POST "localhost:9200/bank/_update/94" -H 'Content-Type: application/json' -d '
-       {
-       "doc" : {
-           "lastname": "jerry",
-           "employer": "benny"
-           }
-       }
-       '
-       '''
-   
-       params = {'pretty': 'true'}
-   
-       req_body = {
-           'doc': request.query_params._dict
-           }
-   
-       req_url = es_addr + '/' + index + '/_update/' + did
-   
-       resp = requests.post(req_url, params=params, json=req_body, headers={'Content-Type': 'application/json'})
-   
-       print('HTTP code:', resp.status_code, '-- response:', resp)
-   
-       resp_json = json.loads(resp.text)
-   
-       return resp_json
-   ```
+    ```python
+    @app.get('/{index}/document/update/{did}')
+    def document_update(
+        index: str,
+        did: str,
+        request: Request
+        ):
+        '''
+        curl -X POST "localhost:9200/bank/_update/94" -H 'Content-Type: application/json' -d '
+        {
+        "doc" : {
+            "lastname": "jerry",
+            "employer": "benny"
+            }
+        }
+        '
+        '''
+    
+        params = {'pretty': 'true'}
+    
+        req_body = {
+            'doc': request.query_params._dict
+            }
+    
+        req_url = es_addr + '/' + index + '/_update/' + did
+    
+        resp = requests.post(req_url, params=params, json=req_body, headers={'Content-Type': 'application/json'})
+    
+        print('HTTP code:', resp.status_code, '-- response:', resp)
+    
+        resp_json = json.loads(resp.text)
+    
+        return resp_json
+    ```
 
 #### Delete document
 
 1.  문서 삭제 - [링크](http://localhost:5002/bank/document/delete/94)
 
-   ```python
-   @app.get('/{index}/document/delete/{did}')
-   def document_delete(
-       index: str,
-       did: str
-       ):
-       '''
-       curl -X DELETE "localhost:9200/bank/_doc/94"
-       '''
-   
-       params = {'pretty': 'true'}
-       req_url = es_addr + '/' + index + '/_doc/' + did
-   
-       resp = requests.delete(req_url, params=params)
-   
-       print('HTTP code:', resp.status_code, '-- response:', resp)
-   
-       resp_json = json.loads(resp.text)
-   
-       return resp_json
-   ```
+    ```python
+    @app.get('/{index}/document/delete/{did}')
+    def document_delete(
+        index: str,
+        did: str
+        ):
+        '''
+        curl -X DELETE "localhost:9200/bank/_doc/94"
+        '''
+    
+        params = {'pretty': 'true'}
+        req_url = es_addr + '/' + index + '/_doc/' + did
+    
+        resp = requests.delete(req_url, params=params)
+    
+        print('HTTP code:', resp.status_code, '-- response:', resp)
+    
+        resp_json = json.loads(resp.text)
+    
+        return resp_json
+    ```
 
-   
+## 파이썬 데이터 조작 : SQLAlchemy 패키지 활용
+
+### 인덱스 CRUD
+
+### 문서 CRUD
 
