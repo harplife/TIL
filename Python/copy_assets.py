@@ -23,7 +23,7 @@ n = 0
 for _dir, _subdirs, files in os.walk(assets_folder):
     for file in files:
         old_fn = os.path.join(assets_folder, file)
-        new_fn = os.path.join(target_folder, '.jpg')
+        new_fn = os.path.join(target_folder, file+'.jpg')
         n += 1
         copyfile(old_fn, new_fn)
         # os.rename(old_fn, new_fn)  # this is pretty much cut
