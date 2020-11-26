@@ -91,7 +91,7 @@
 - [TIMESTAMP 사용하기](<https://github.com/harplife/TIL/blob/master/Python/TIMESTAMP.ipynb>)
 - [Numpy 기본](<https://github.com/harplife/TIL/blob/master/Python/numpy_basics.ipynb>)
   - [Numpy 활용 (MovieLense 데이터셋)](<https://github.com/harplife/TIL/blob/master/Python/numpy_movielens.ipynb>)
-- 
+- [HOWTO escape nested loops](<https://github.com/harplife/TIL/blob/master/Python/Nested_Loops_Escape.ipynb>)
 
 ---
 
