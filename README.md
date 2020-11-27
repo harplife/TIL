@@ -36,6 +36,7 @@
 - [텍스트 Detection (EAST) & Recognition (Tesseract) 모델 활용](<https://github.com/harplife/TIL>)
 - [k-Nearest Neighbors (KNN) 모델 이해](<https://github.com/harplife/TIL/blob/master/Data%20Science/k_Nearest_Neighbors_simplified.ipynb>)
 - [Tesseract로 이미지에서 문자 검출](<https://github.com/harplife/TIL/blob/master/Data%20Science/Pytesseract.ipynb>)
+- [US달러 환율 데이터 Crawler](<https://github.com/harplife/TIL/blob/master/Data%20Science/USD_KRW_Exchange_Crawl.py>)
 
 ---
 
