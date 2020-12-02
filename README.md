@@ -66,7 +66,7 @@
   - [WAVE 패키지로 소리 저장](<https://github.com/harplife/TIL/blob/master/Python/sine_wave_2.ipynb>)
 - [네이버 Top 20 검색 Crawling](<https://github.com/harplife/TIL/blob/master/Python/naver_top_search.ipynb>)
 - [빗썸 (비트코인) Crawling](<https://github.com/harplife/TIL/blob/master/Python/bitcoin_crawl.ipynb>)
-- [초간단 클래스 생성 및 활용](<https://github.com/harplife/TIL/blob/master/Python/easy_python_class.ipynb>)
+- [Understanding Python Class](<https://github.com/harplife/TIL/blob/master/Python/python_class.ipynb>)
 - [Flask + Ngrok + Telegram으로 챗봇 구현](<https://github.com/harplife/TIL/tree/master/Python/chatbot>)
 - Django 웹프레임워크
   1. [초간단 Django 활용](<https://github.com/harplife/TIL/blob/master/Python/Django_Simple.md>)
