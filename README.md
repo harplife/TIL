@@ -94,6 +94,9 @@
   - [Numpy 활용 (MovieLense 데이터셋)](<https://github.com/harplife/TIL/blob/master/Python/numpy_movielens.ipynb>)
 - [HOWTO escape nested loops](<https://github.com/harplife/TIL/blob/master/Python/Nested_Loops_Escape.ipynb>)
 - [Decorator & Context Manager](<https://github.com/harplife/TIL/blob/master/Python/Decorated_Context_Managers.ipynb>)
+- [Celery Basics](<https://github.com/harplife/celery_howto>)
+- [Build remote Task Manager](<https://github.com/harplife/task_manager_web>)
+- [Python executable : Math Practice!](<https://github.com/harplife/math_practice>)
 
 ---
 
