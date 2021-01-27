@@ -97,6 +97,7 @@
 - [Celery Basics](<https://github.com/harplife/celery_howto>)
 - [Build remote Task Manager](<https://github.com/harplife/task_manager_web>)
 - [Python executable : Math Practice!](<https://github.com/harplife/math_practice>)
+- [text augmentation : l33tsp3^k, igpay atinlay](https://github.com/harplife/TIL/blob/master/Python/augly.py)
 
 ---
 
