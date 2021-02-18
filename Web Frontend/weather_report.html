@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS Test</title>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+<body>
+<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id='control'>
+  <button id='get-range'>get range</button>
+  <p id='slide-range'></p>
+</div>
+<script>
+
+/*
+d3.csv("https://gist.githubusercontent.com/harplife/d62979a3c9b13339d4d0cc994e9d34a9/raw/c9bb54abf8b482363f05d6318fe126b9042d9bc7/중기예보_20131226_20210109.csv", function(data) {
+    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+        console.log(data[i]);
+        //console.log(data[i].date);
+    }
+});
+*/
+
+var rawDataURL = 'https://gist.githubusercontent.com/harplife/f2654791917ef3edd5aae9e87c2365e4/raw/224205468af934c7c0f72122ed56d7e72b468961/weather_20131226_20210109_all_daily.csv';
+
+var selectorOptions = {
+    buttons: [
+    {
+        step: 'month',
+        stepmode: 'backward',
+        count: 1,
+        label: '1m'
+    },
+    {
+        step: 'month',
+        stepmode: 'backward',
+        count: 3,
+        label: '3m'
+    },
+    {
+        step: 'month',
+        stepmode: 'backward',
+        count: 6,
+        label: '6m'
+    },
+    {
+        step: 'year',
+        stepmode: 'backward',
+        count: 1,
+        label: '1y'
+    },
+    {
+        step: 'all',
+    }
+    ],
+};
+
+Plotly.d3.csv(rawDataURL, function(err, rows){
+
+  function unpack(rows, key) {
+    return rows.map(function(row) { return row[key]; });
+  }
+
+  var trace1 = {
+    type: "scatter",
+    mode: "lines",
+    name: '최저온도',
+    x: unpack(rows, 'date'),
+    y: unpack(rows, 'temp_lowest'),
+    line: {color: '#17BECF'}
+  }
+
+  var trace2 = {
+    type: "scatter",
+    mode: "lines",
+    name: '최고온도',
+    x: unpack(rows, 'date'),
+    y: unpack(rows, 'temp_highest'),
+    line: {color: '#7F7F7F'}
+  }
+
+  var data = [trace1, trace2];
+
+  var layout = {
+    title: '전국 시간별 최저/최고 온도 평균',
+    xaxis: {
+      rangeselector: selectorOptions,
+      rangeslider: {}
+    },
+    yaxis: {
+      fixedranged: true
+    }
+  };
+
+  Plotly.newPlot('myDiv', data, layout);
+});
+
+var gd = document.getElementById('myDiv');
+var button = document.getElementById('get-range');
+var timeFormat = d3.timeFormat('%Y-%m-%d');
+
+button.addEventListener("click", function() {
+  var slideRange = document.getElementById('slide-range');
+  var slideRangeOutput = gd.layout.xaxis.range;
+  var rangeStart = new Date(slideRangeOutput[0]);
+  rangeStart = timeFormat(rangeStart);
+  var rangeStop = new Date(slideRangeOutput[1]);
+  rangeStop = timeFormat(rangeStop);
+  slideRange.innerHTML = `SELECT * FROM mytable A WHERE A.DatagroupId = 1234 AND (A.orderDate BETWEEN '${rangeStart}' AND '${rangeStop}');`;
+});
+
+</script>
+
+</body>
+</html>
