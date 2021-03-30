@@ -21,7 +21,8 @@
 
 ### Web Frontend
 
-- [temperature-timeseries](<https://github.com/harplife/TIL/blob/master/Web%20Frontend/weather_report.html>)
+- [Plotly Time Series Chart](<https://github.com/harplife/TIL/blob/master/Web%20Frontend/weather_report.html>)
+- [Plotly Sunburst Chart using JSON data](<https://github.com/harplife/TIL/blob/master/Web%20Frontend/doongle_agegroup_by_gender_pie.html>)
 
 ---
 
