@@ -50,9 +50,11 @@
       for(var i = 0; i < 10; i++){
         var item = document.createElement('div');
         var text = document.createTextNode('item'+item_n);
+        var randomColor = Math.floor(Math.random()*16777215).toString(16);
         item_n++;
         item.appendChild(text);
         item.style.height = getRndInteger(100, 700) + 'px';
+        item.style.backgroundColor = '#' + randomColor;
         item.style.position = 'absolute';
         item.style.transition = 'transform 0.2s ease 0s';
         container.appendChild(item);
