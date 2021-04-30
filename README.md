@@ -23,6 +23,7 @@
 
 - [Plotly Time Series Chart](<https://github.com/harplife/TIL/blob/master/Web%20Frontend/weather_report.html>)
 - [Plotly Sunburst Chart using JSON data](<https://github.com/harplife/TIL/blob/master/Web%20Frontend/doongle_agegroup_by_gender_pie.html>)
+- [Grid Layout with Magic-Grid](https://github.com/harplife/TIL/blob/master/Web%20Frontend/magicGrid.html)
 
 ---
 
