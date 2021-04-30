@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <title>Magic Grid</title>
+
+  <style>
+    .container div {
+      width: 280px;
+      height: 500px;
+      background-color: antiquewhite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- <button type="button" onClick="addItem()">Add item</button> -->
+  <div class="container" id="container">
+
+  </div>
+
+  <script src="https://unpkg.com/magic-grid/dist/magic-grid.cjs.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script>
+    function getRndInteger(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    var magicGrid = new MagicGrid({
+      container: '#container',
+      animate: false,
+      gutter: 30,
+      static: false,
+      items: 10,
+      useMin: true
+    });
+
+    magicGrid.listen();
+
+    var container = document.getElementById('container');
+    var item_n = 0;
+
+    function addItem() {
+      for(var i = 0; i < 10; i++){
+        var item = document.createElement('div');
+        var text = document.createTextNode('item'+item_n);
+        item_n++;
+        item.appendChild(text);
+        item.style.height = getRndInteger(100, 700) + 'px';
+        item.style.position = 'absolute';
+        item.style.transition = 'transform 0.2s ease 0s';
+        container.appendChild(item);
+        magicGrid.positionItems();
+      };
+    }
+
+    addItem();
+
+    $(window).scroll(function() {   
+      if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        //alert("bottom!");
+        addItem();
+      }
+    });
+
+    $(document).ready(function(){
+      $(this).scrollTop(0);
+    });
+  </script>
+
+</body>
+</html>
