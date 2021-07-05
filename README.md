@@ -116,3 +116,4 @@
 - [FastAPI + ElasticSearch](<https://github.com/harplife/TIL/blob/master/Flask_ElasticSearch_Guide.md>)
 - [도커(docker)로 개발환경 구축하기](<https://github.com/harplife/TIL/blob/master/Docker_Dev_Guide.md>)
 - [도커재시작으로 인해 발생되는 방화벽 에러](<https://github.com/harplife/TIL/blob/master/도커재시작_방화벽에러_해결방안.md>)
+- [SikuliX 초간단 가이드](https://github.com/harplife/TIL/blob/master/SikuliX_%EA%B0%80%EC%9D%B4%EB%93%9C.pdf)
