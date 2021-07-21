@@ -107,6 +107,7 @@
 - [Build remote Task Manager](<https://github.com/harplife/task_manager_web>)
 - [Python executable : Math Practice!](<https://github.com/harplife/math_practice>)
 - [text augmentation : l33tsp3^k, igpay atinlay](https://github.com/harplife/TIL/blob/master/Python/augly.py)
+- [윈도우 배치로 파이썬 스크립트 실행](https://github.com/harplife/TIL/blob/master/Python/%EC%9C%88%EB%8F%84%EC%9A%B0_%EB%B0%B0%EC%B9%98%EB%A1%9C_%ED%8C%8C%EC%9D%B4%EC%8D%AC_%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8_%EC%8B%A4%ED%96%89.md)
 
 ---
 
