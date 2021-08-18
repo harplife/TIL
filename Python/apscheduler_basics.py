@@ -77,14 +77,7 @@ def jobs():
     return "<h1>Check the terminal</h1>"
 
 
-def sched_close():
-    # this will remove jobs from jobstore
-    jobs = sched.get_jobs()
-    for job in jobs:
-        job.remove()
-
-
 if __name__ == '__main__':
-    # atexit.register(sched_close)  # in case removing jobs is preferred
-    atexit.register(sched.shutdown)  # just making sure jobs are terminated
+    atexit.register(sched.remove_all_jobs)  # shutdown jobs, and jobs on jobstore
+    #atexit.register(sched.shutdown)  # shutsdown jobs, but leaves jobstore alone
     app.run(port=8003, threaded=True)
