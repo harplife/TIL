@@ -111,6 +111,7 @@
 - [파이썬으로 하는 제너러티브 아트](https://github.com/harplife/TIL/blob/master/Python/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C_%ED%95%98%EB%8A%94_%EC%A0%9C%EB%84%88%EB%9F%AC%ED%8B%B0%EB%B8%8C_%EC%95%84%ED%8A%B8.md)
 - [파이썬으로 스케쥴러 만들기](https://github.com/harplife/TIL/blob/master/Python/apscheduler_basics.py)
 - [패키지 구성하는 두가지 방법](https://github.com/harplife/TIL/tree/master/Python/package_example)
+- [Context Manager로 예외 처리 방법](https://github.com/harplife/TIL/blob/master/Python/error_handling_w_context_manager.md)
 
 ---
 
