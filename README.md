@@ -24,6 +24,7 @@
 - [Plotly Time Series Chart](<https://github.com/harplife/TIL/blob/master/Web%20Frontend/weather_report.html>)
 - [Plotly Sunburst Chart using JSON data](<https://github.com/harplife/TIL/blob/master/Web%20Frontend/doongle_agegroup_by_gender_pie.html>)
 - [Grid Layout with Magic-Grid](https://github.com/harplife/TIL/blob/master/Web%20Frontend/magicGrid.html)
+- [HTML에 수학수식 넣기](https://github.com/harplife/TIL/blob/master/Web%20Frontend/HTML%EC%97%90_%EC%88%98%ED%95%99_%EC%88%98%EC%8B%9D_%EB%84%A3%EA%B8%B0.md)
 
 ---
 
