@@ -113,6 +113,7 @@
 - [파이썬으로 스케쥴러 만들기](https://github.com/harplife/TIL/blob/master/Python/apscheduler_basics.py)
 - [패키지 구성하는 두가지 방법](https://github.com/harplife/TIL/tree/master/Python/package_example)
 - [Context Manager로 예외 처리 방법](https://github.com/harplife/TIL/blob/master/Python/error_handling_w_context_manager.md)
+- [DataFrame에서 null 값 제대로 체크하는 방법](https://github.com/harplife/TIL/blob/master/Python/Pandas_Check_Value_Null.ipynb)
 
 ---
 
