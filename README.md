@@ -126,3 +126,4 @@
 - [SikuliX 초간단 가이드](https://github.com/harplife/TIL/blob/master/SikuliX_%EA%B0%80%EC%9D%B4%EB%93%9C.pdf)
 - [TestNG 초간단 가이드](https://github.com/harplife/TIL/blob/master/TestNG%EB%A5%BC_%ED%99%9C%EC%9A%A9%ED%95%9C_TDD_%EA%B0%80%EC%9D%B4%EB%93%9C.pdf)
 - [Jenkins 초간단 가이드](https://github.com/harplife/TIL/blob/master/Jenkins_%EA%B0%80%EC%9D%B4%EB%93%9C.pdf)
+- [Basic statistics with MySQL](https://github.com/harplife/TIL/blob/master/basic_stats_with_mysql.md)
