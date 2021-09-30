@@ -47,6 +47,7 @@
 - [k-Nearest Neighbors (KNN) 모델 이해](<https://github.com/harplife/TIL/blob/master/Data%20Science/k_Nearest_Neighbors_simplified.ipynb>)
 - [Tesseract로 이미지에서 문자 검출](<https://github.com/harplife/TIL/blob/master/Data%20Science/Pytesseract.ipynb>)
 - [US달러 환율 데이터 Crawler](<https://github.com/harplife/TIL/blob/master/Data%20Science/USD_KRW_Exchange_Crawl.py>)
+- [MySQL로 하는 RFM 분석](https://github.com/harplife/TIL/blob/master/Data%20Science/MySQL%EB%A1%9C_%ED%95%98%EB%8A%94_RFM_%EB%B6%84%EC%84%9D_%EB%B0%8F_EDA.md)
 
 ---
 
