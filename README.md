@@ -129,3 +129,4 @@
 - [Jenkins 초간단 가이드](https://github.com/harplife/TIL/blob/master/Jenkins_%EA%B0%80%EC%9D%B4%EB%93%9C.pdf)
 - [Basic statistics with MySQL](https://github.com/harplife/TIL/blob/master/basic_stats_with_mysql.md)
 - [WIP: How to plot a nested pie chart with Plotly.js](https://github.com/harplife/TIL/blob/master/doongle_agegroup_by_gender_pie.html)
+- [WIP: How to plot a graph with Vegas.js](https://github.com/harplife/TIL/blob/master/vegas_example.html)
