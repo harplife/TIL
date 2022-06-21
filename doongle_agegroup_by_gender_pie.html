@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+<p>Drawing Plotly pie chart with JavaScript and <a href='https://gist.githubusercontent.com/harplife/0105ca2cf553951de9bc43f0dff9ed06/raw/d75d14909391dd031475c2fa4adb20ac2e5181b2/age_group_by_gender_pie_plotly.json'>JSON data</a></p>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<div id="graph-container" style="width:90%;height:250px;"></div>
+
+<script>
+  var graphDiv = document.getElementById('graph-container');
+  var jsonUrl = 'https://gist.githubusercontent.com/harplife/0105ca2cf553951de9bc43f0dff9ed06/raw/d75d14909391dd031475c2fa4adb20ac2e5181b2/age_group_by_gender_pie_plotly.json';
+
+  Plotly.d3.json(jsonUrl, function(err, fig) {
+    // assuming json is formatted as { "data": [/* */], "layout": {/* */} }
+
+    Plotly.plot(graphDiv, fig.data, fig.layout);
+  });
+</script>
+
+</body>
+
+</html>
