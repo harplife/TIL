@@ -115,6 +115,7 @@
 - [패키지 구성하는 두가지 방법](https://github.com/harplife/TIL/tree/master/Python/package_example)
 - [Context Manager로 예외 처리 방법](https://github.com/harplife/TIL/blob/master/Python/error_handling_w_context_manager.md)
 - [DataFrame에서 null 값 제대로 체크하는 방법](https://github.com/harplife/TIL/blob/master/Python/Pandas_Check_Value_Null.ipynb)
+- [파이썬으로 트리 자료구조 ](https://github.com/harplife/TIL/blob/master/Python/%ED%8A%B8%EB%A6%AC%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%EA%B5%AC%ED%98%84.ipynb)
 
 ---
 
